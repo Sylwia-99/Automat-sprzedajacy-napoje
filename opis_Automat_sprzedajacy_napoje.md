@@ -10,12 +10,12 @@
 		- Brak reszty/może wydać: wyskakuje okienko z informacją o zakupach, wydaje resztę (dolicza wrzucone monety, odlicza wydane jako reszta, odlicza wydany towar), odejmuje towar.
 		- Nie może wydać: wyskakuje okienko z napisem "Tylko odliczona kwota"
 ### Testowanie
-1.Sprawdzenie ceny jednego towaru - oczekiwana informacja o cenie.
-2.Wrzucenie odliczonej kwoty, zakup towaru - oczekiwany brak reszty.
-3.Wrzucenie większej kwoty, zakup towaru - oczekiwana reszta.
-4.Wykupienie całego asortymentu, próba zakupu po wyczerpaniu towaru -oczekiwana informacja o braku.
-5.Sprawdzenie ceny towaru o nieprawidłowym numerze (<30 lub >50) -oczekiwana informacja o błędzie.
-6.Wrzucenie kilku monet, przerwanie transakcji - oczekiwany zwrot monet.
-7.Wrzucenie za małej kwoty, wybranie poprawnego numeru towaru, wrzucenie reszty monet do odliczonej kwoty, ponowne wybranie poprawnego numeru towaru- oczekiwany brak reszty.
-8.Zakup towaru płacąc po 1 gr - suma stu monet ma być równa 1zł (dla floatów suma sto razy 0.01+0.01+...+0.01 nie będzie równa 1.0). Płatności można dokonać za pomocą pętli for w interpreterze.
+1. Sprawdzenie ceny jednego towaru - oczekiwana informacja o cenie.
+2. Wrzucenie odliczonej kwoty, zakup towaru - oczekiwany brak reszty.
+3. Wrzucenie większej kwoty, zakup towaru - oczekiwana reszta.
+4. Wykupienie całego asortymentu, próba zakupu po wyczerpaniu towaru -oczekiwana informacja o braku.
+5. Sprawdzenie ceny towaru o nieprawidłowym numerze (<30 lub >50) -oczekiwana informacja o błędzie.
+6. Wrzucenie kilku monet, przerwanie transakcji - oczekiwany zwrot monet.
+7. Wrzucenie za małej kwoty, wybranie poprawnego numeru towaru, wrzucenie reszty monet do odliczonej kwoty, ponowne wybranie poprawnego numeru towaru- oczekiwany brak reszty.
+8. Zakup towaru płacąc po 1 gr - suma stu monet ma być równa 1zł (dla floatów suma sto razy 0.01+0.01+...+0.01 nie będzie równa 1.0). Płatności można dokonać za pomocą pętli for w interpreterze.
 ### Link do repozytorium - https://github.com/Sylwia-99/Automat-sprzedajacy-napoje.git

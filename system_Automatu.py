@@ -88,3 +88,26 @@ class PojemnikProduktow:
             return self.ListaProduktow[numer]
         return False
 
+class WyborKodu:
+    def __init__(self):
+        pass
+
+    kod=""
+    def wybierz(self,cyfra):
+        if len(self.kod)==2:
+            self.clear()
+        self.kod+=cyfra
+        if len(self.kod)==2:
+            return self.kod
+        else:
+            return False
+
+    def stan(self):
+        if len(self.kod)!=0:
+            return self.kod
+        else:
+            return False
+
+    def clear(self):
+        self.kod = ""
+

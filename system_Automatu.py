@@ -6,7 +6,7 @@ class PojemnikMonet:
         Monety:dict zmienna odpowiedzialna za przechowywanie monet
     Metody:
         dodajMonety(Monety:monety) dodaje monety do pojemnika na pieniadze
-        zwrocWartosc(wartoscDoWydania)-> zwraca monetyDoWydania czyli wartosc, którą wyciągam z pojemnika na pieniądze
+        zwrocWartosc(wartoscDoWydania) zwraca monetyDoWydania czyli wartosc, którą wyciągam z pojemnika na pieniądze
                                          lub False, jeśli nie jest możliwe wydanie reszty(np, gdy nie ma w pojemniku odpowiednich monet)
     """
     Monety={1:70,
@@ -206,7 +206,8 @@ class Automat_z_napojami:
     Metody:
         wybierz(cyfra) przekazuje cyfre do wyborKodu i jeśli wybrano kod, to gdy kod jest dostepny
         wybiera numer napoju
-        wrzucMonete(moneta) nadzoruje wrzucanie monet do automatu
+        wrzucMonete(moneta) dodaje monety to tymczasowego schowka
+        sprawdzIWydaj() Sprawdza czy pieniądze się zgadzają, jeśli tak wydaje reszte i produkt i True inaczej False
         przerwij() funkcja zwraca natychmiast reszte(a w zasadzie wrzucone do automatu pieniadze) i zeruje tymczasowy schowek MonetyWSchowku oraz aktualnaKwotaWSchowku
         onZwrocReszte(funZwrocReszte) ustawia callback na funZwrocReszte
         onZmianaKodu(funZmianaKodu) ustawia callback na funZmianaKodu
@@ -276,30 +277,38 @@ class Automat_z_napojami:
 
     def wrzucMonete(self,moneta):
         """
-        nadzoruje wrzucanie monet do automatu
+        dodaje monety to tymczasowego schowka
         :param moneta: moneta, która jest wrzucana do automatu
         """
-        if self.Stan == Stan.wprowadzanieMonet: #gdy Stan jest ustawiony na wprowadzanieMonet
-            self.MonetyWSchowku[moneta]+=1 #dodaje pieniadze do Schowka tymczasowego(MonetyWSchowku)
-            self.aktualnaKwotaWSchowku+=moneta #zwiekszam akualnaKwotaWSchowku
-            print("Pieniądze w schowku:" + str(self.aktualnaKwotaWSchowku / 100)) #wypisuje informacje o pieniądzach w schowku
-            print("Produkt:" + str(self.wybranyProdukt)) #wypisuje informacje o kodzie wybranego produktu
-            if self.aktualnaKwotaWSchowku>=self.pojemnikProduktow.cena(self.wybranyProdukt):  #jesli aktualnaKwotaWSchowku jest wystarczajaca
-                roznica=self.aktualnaKwotaWSchowku-self.pojemnikProduktow.cena(self.wybranyProdukt) #liczę róznicę kwoty w schowku i ceny danego produktu
-                reszta=self.pojemnikMonet.zwrocWartosc(roznica) #prosze o reszte z kasetki
-                if reszta==False: #gdy nie da się wydać reszty
-                    self.funZwrocReszte(self.MonetyWSchowku) #prosze o wrzuconą przed chwilą wartość
-                    self.funTylkoOdliczonaKwota() #wykonuje EVENT funTylkoOdliczonaKwota() z informacją o podanie wyliczonej Kwoty
-                else:
-                    self.pojemnikMonet.dodajMonety(self.MonetyWSchowku) #dodaje monety z tymczasowego schowka do Pojemnika na pieniądze
-                    self.funZwrocReszte(reszta) #wykonuje EVENT funZwrocReszte
-                    produkt=self.pojemnikProduktow.zmniejsziwypisz(self.wybranyProdukt) #wypisuje info o Produkcie i zmniejszam jego ilosc w Pojemniku na produkty
-                    self.funWydajProdukt(produkt["nazwa"])
-                self.MonetyWSchowku = {monety: 0 for monety in self.MonetyWSchowku} #dictionary comprehension zeruje monety w tymczasowym schowku
-                self.aktualnaKwotaWSchowku = 0 #zeruje aktualna kwote w schowku tymczasowym
-                self.Stan =Stan.wyborProduktu #ustawiam stan na wyborProduktu
-        else: #to nie czas na wrzucanie pieniedzy
-            self.funZwrocReszte({moneta: 1}) #oddaje od razu to co zostało wrzucone
+        self.MonetyWSchowku[moneta]+=1 #dodaje pieniadze do Schowka tymczasowego(MonetyWSchowku)
+        self.aktualnaKwotaWSchowku+=moneta #zwiekszam akualnaKwotaWSchowku
+        print("Pieniądze w schowku:" + str(self.aktualnaKwotaWSchowku / 100)) #wypisuje informacje o pieniądzach w schowku
+        #print("Produkt:" + str(self.wybranyProdukt)) #wypisuje informacje o kodzie wybranego produktu
+        if self.Stan == Stan.wprowadzanieMonet:  # gdy Stan jest ustawiony na wprowadzanieMonet
+            self.sprawdzIWydaj()  # to wywoluje funkcje sprawdzIWydaj
+
+    def sprawdzIWydaj(self):
+        """
+        Sprawdza czy pieniądze się zgadzają, jeśli tak wydaje reszte i produkt i True
+        :return: zwraca True jeśli sprawdzanie przebiegło prawidlowo w przeciwnym razie False
+        """
+        if self.aktualnaKwotaWSchowku >= self.pojemnikProduktow.cena(self.wybranyProdukt):  # jesli aktualnaKwotaWSchowku jest wystarczajaca
+            roznica = self.aktualnaKwotaWSchowku - self.pojemnikProduktow.cena(self.wybranyProdukt)  # liczę róznicę kwoty w schowku i ceny danego produktu
+            reszta = self.pojemnikMonet.zwrocWartosc(roznica)  # prosze o reszte z kasetki
+            if reszta == False:  # gdy nie da się wydać reszty
+                self.funZwrocReszte(self.MonetyWSchowku)  # prosze o wrzuconą przed chwilą wartość
+                self.funTylkoOdliczonaKwota()  # wykonuje EVENT funTylkoOdliczonaKwota() z informacją o podanie wyliczonej Kwoty
+            else:
+                self.pojemnikMonet.dodajMonety(self.MonetyWSchowku)  # dodaje monety z tymczasowego schowka do Pojemnika na pieniądze
+                self.funZwrocReszte(reszta)  # wykonuje EVENT funZwrocReszte
+                produkt = self.pojemnikProduktow.zmniejsziwypisz(self.wybranyProdukt)  # wypisuje info o Produkcie i zmniejszam jego ilosc w Pojemniku na produkty
+                self.funWydajProdukt(produkt["nazwa"])
+            self.MonetyWSchowku = {monety: 0 for monety in self.MonetyWSchowku}  # dictionary comprehension zeruje monety w tymczasowym schowku
+            self.aktualnaKwotaWSchowku = 0  # zeruje aktualna kwote w schowku tymczasowym
+            self.Stan = Stan.wyborProduktu  # ustawiam stan na wyborProduktu
+            return True
+        else:
+            return False
 
     def przerwij(self):
         """
@@ -377,68 +386,78 @@ if __name__=="__main__":
         print("w Automacie nie ma produktu 36")
     else:
         print("w Automacie jest produkt 36")
-
-    automat.wrzucMonete(50)  # Wydano reszte: {50: 1}
 ###Test 1
+    print("\n Test 1")
     print("Cena produktu nr 36 wynosi",automat.pojemnikProduktow.cena("36")/100,"zl")
-
 ###Test 2
+    print("\n Test 2")
     automat.wybierz("4")  # Aktualny kod: 4
     automat.wybierz("6")  # Aktualny kod: 46 #Wrzuc pieniadze, cena produktu=1.8
-    automat.wrzucMonete(100) #Pieniadze w schowku: 1.0 #Produkt:46
-    automat.wrzucMonete(50) #Pieniadze w schowku: 1.5 #Produkt:46
-    automat.wrzucMonete(20) #Pieniadze w schowku: 1.7 #Produkt:46
-    automat.wrzucMonete(10) #Pieniadze w schowku: 1.8 #Produkt:46 #{500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0}#Wydano produkt: tymbark jabłko-kiwi
+    automat.wrzucMonete(100) #Pieniadze w schowku: 1.0
+    automat.wrzucMonete(50) #Pieniadze w schowku: 1.5
+    automat.wrzucMonete(20) #Pieniadze w schowku: 1.7
+    automat.wrzucMonete(10) #Pieniadze w schowku: 1.8 #Wydano reszte:{500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0}#Wydano produkt: tymbark jabłko-kiwi
 ###Test 3
+    print("\n Test 3")
     automat.wybierz("3") # Aktualny kod: 3
     automat.wybierz("5") # Aktualny kod: 35 # Wrzuc pieniadze, cena produktu= 4.5
-    automat.wrzucMonete(200)#Pieniadze w schowku: 2.0 #Produkt:35
-    automat.wrzucMonete(200)#Pieniadze w schowku: 4.0 #Produkt:35
-    automat.wrzucMonete(200) #Pieniadze w schowku: 6.0 #Produkt:35 # Wydano reszte: {500: 0, 200: 0, 100: 1, 50: 1, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0} # Wydano produkt: pepsi
+    automat.wrzucMonete(200)#Pieniadze w schowku: 2.0
+    automat.wrzucMonete(200)#Pieniadze w schowku: 4.0
+    automat.wrzucMonete(200) #Pieniadze w schowku: 6.0 # Wydano reszte: {500: 0, 200: 0, 100: 1, 50: 1, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0} # Wydano produkt: mirinda
 ###Test 4
+    print("\n Test 4")
     automat.wybierz("4")  # Aktualny kod: 4
     automat.wybierz("6")  # Aktualny kod: 46 #Wrzuc pieniadze,cena produktu= 1.8
-    automat.wrzucMonete(100) #Pieniadze w schowku: 1.0 #Produkt:46
-    automat.wrzucMonete(50) #Pieniadze w schowku: 1.5 #Produkt:46
-    automat.wrzucMonete(20) #Pieniadze w schowku: 1.7 #Produkt:46
-    automat.wrzucMonete(10) #Pieniadze w schowku: 1.8 #Produkt:46 #{500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0} #Wydano produkt: tymbark jabłko-kiwi
+    automat.wrzucMonete(100) #Pieniadze w schowku: 1.0
+    automat.wrzucMonete(50) #Pieniadze w schowku: 1.5
+    automat.wrzucMonete(20) #Pieniadze w schowku: 1.7
+    automat.wrzucMonete(10) #Pieniadze w schowku: 1.8 #{500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0} #Wydano produkt: tymbark jabłko-kiwi
     automat.wybierz("4")  # Aktualny kod: 4
     automat.wybierz("6")  # Aktualny kod:46 #Wrzuc pieniadze, cena produktu= 1.8
-    automat.wrzucMonete(100) #Pieniadze w schowku: 1.0 #Produkt:46
-    automat.wrzucMonete(50)#Pieniadze w schowku: 1.5 #Produkt:46
-    automat.wrzucMonete(20)#Pieniadze w schowku: 1.7 #Produkt:46
-    automat.wrzucMonete(10)#Pieniadze w schowku: 1.8 #Produkt:46# {500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0} #Wydano produkt: tymbark jabłko-kiwi
+    automat.wrzucMonete(100) #Pieniadze w schowku: 1.0
+    automat.wrzucMonete(50)#Pieniadze w schowku: 1.5
+    automat.wrzucMonete(20)#Pieniadze w schowku: 1.7
+    automat.wrzucMonete(10)#Pieniadze w schowku: 1.8 # {500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0} #Wydano produkt: tymbark jabłko-kiwi
     automat.wybierz("4")  # Aktualny kod: 4
     automat.wybierz("6")  # Aktualny kod: 46 #Wrzuc pieniadze,cena produktu= 1.8
-    automat.wrzucMonete(100) #Pieniadze w schowku: 1.0 #Produkt:46
-    automat.wrzucMonete(50)#Pieniadze w schowku: 1.5 #Produkt:46
-    automat.wrzucMonete(20)#Pieniadze w schowku: 1.7 #Produkt:46
-    automat.wrzucMonete(10)#Pieniadze w schowku: 1.8 #Produkt:46# {500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0} #Wydano produkt: tymbark jabłko-kiwi
+    automat.wrzucMonete(100) #Pieniadze w schowku: 1.0
+    automat.wrzucMonete(50)#Pieniadze w schowku: 1.5
+    automat.wrzucMonete(20)#Pieniadze w schowku: 1.7
+    automat.wrzucMonete(10)#Pieniadze w schowku: 1.8 # {500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0} #Wydano produkt: tymbark jabłko-kiwi
     automat.wybierz("4")  # Aktualny kod: 4
     automat.wybierz("6")  # Aktualny kod: 46 #Wrzuc pieniadze, cena produktu= 1.8
-    automat.wrzucMonete(100) #Pieniadze w schowku: 1.0 #Produkt:46
-    automat.wrzucMonete(50) #Pieniadze w schowku: 1.5 #Produkt:46
-    automat.wrzucMonete(20) #Pieniadze w schowku: 1.7 #Produkt:46
-    automat.wrzucMonete(10) #Pieniadze w schowku: 1.8 #Produkt:46 # {500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0} #Wydano produkt: tymbark jabłko-kiwi
+    automat.wrzucMonete(100) #Pieniadze w schowku: 1.0
+    automat.wrzucMonete(50) #Pieniadze w schowku: 1.5
+    automat.wrzucMonete(20) #Pieniadze w schowku: 1.7
+    automat.wrzucMonete(10) #Pieniadze w schowku: 1.8 # {500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0} #Wydano produkt: tymbark jabłko-kiwi
     automat.wybierz("4")  # Aktualny kod: 4
     automat.wybierz("6")  #W automacie nie ma produktu z numerem 46
 ###Test 5
+    print("\n Test 5")
     automat.wybierz("9") # Aktualny kod: 9
     automat.wybierz("9") #W automacie nie ma produktu z numerem 99
     automat.wybierz("1") # Aktualny kod: 1
     automat.wybierz("9") # W automacie nie ma produktu z numerem 19
 ###Test 6
+    print("\n Test 6")
     automat.wybierz("3")  # Aktualny kod: 3
     automat.wybierz("5")  # Aktualny kod: 35 # Wrzuc pieniadze, cena produktu= 4.5
-    automat.wrzucMonete(200) #Pieniadze w schowku: 2.0 #Produkt:35
-    automat.wrzucMonete(200) #Pieniadze w schowku: 4.0 #Produkt:35
+    automat.wrzucMonete(200) #Pieniadze w schowku: 2.0
+    automat.wrzucMonete(200) #Pieniadze w schowku: 4.0
     automat.przerwij()#Wydano reszte: {1: 0, 2: 0, 5: 0, 10: 0, 20: 0, 50: 0, 100: 0, 200: 2, 500: 0}
 ###Test 7
-
-
+    print("\n Test 7")
+    automat.wrzucMonete(50) #Pieniądze w schowku:0.5
+    automat.wybierz("3")  # Aktualny kod: 3
+    automat.wybierz("5")  # Aktualny kod: 35 # Wrzuc pieniadze, cena produktu= 4.5
+    automat.wrzucMonete(200) #Pieniadze w schowku: 2.5
+    automat.wrzucMonete(200) #Pieniadze w schowku: 4.5 Wydano reszte: {500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0} Wydano produkt: mirinda
+    automat.wybierz("3")  # Aktualny kod: 3
+    automat.wybierz("5")  # Aktualny kod: 35 # Wrzuc pieniadze, cena produktu= 4.5
 ###Test 8
+    print("\n Test 8")
     automat.wybierz("4") # Aktualny kod: 4
     automat.wybierz("5") # Aktualny kod: 45 # Wrzuc pieniadz, cena produktu= 1.8
     for i in range(0,180):
-        automat.wrzucMonete(1) #Pieniadze w schowku: 1.8 #Produkt:45 #Wydano reszte: {500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0}
+        automat.wrzucMonete(1) #Pieniadze w schowku: ... #Wydano reszte: {500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0, 2: 0, 1: 0}
                                 #Wydano produkt: tymbark jabłko-wiśnia

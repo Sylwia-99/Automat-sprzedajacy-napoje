@@ -58,18 +58,18 @@ class Interfejs_automatu:
         przycisk_5 = Button(self.okno, text="5 zł", command=lambda: self.wrzucono_monete(500),
                             font=("Arial", 14, "italic"), foreground="white", background='black')
 
-        # ustalam położenie przycisków
-        przycisk1.grid(row=2, column=0, padx=1, pady=1)
-        przycisk2.grid(row=2, column=1, padx=1, pady=1)
-        przycisk5.grid(row=2, column=2, padx=1, pady=1)
+        # ustalam położenie przycisków i ich rozciagniecie
+        przycisk1.grid(row=2, column=0, padx=1, pady=1,sticky=W+S+E+N)
+        przycisk2.grid(row=2, column=1, padx=1, pady=1,sticky=W+S+E+N)
+        przycisk5.grid(row=2, column=2, padx=1, pady=1,sticky=W+S+E+N)
 
-        przycisk10.grid(row=3, column=0, padx=1, pady=1)
-        przycisk20.grid(row=3, column=1, padx=1, pady=1)
-        przycisk50.grid(row=3, column=2, padx=1, pady=1)
+        przycisk10.grid(row=3, column=0, padx=1, pady=1,sticky=W+S+E+N)
+        przycisk20.grid(row=3, column=1, padx=1, pady=1,sticky=W+S+E+N)
+        przycisk50.grid(row=3, column=2, padx=1, pady=1,sticky=W+S+E+N)
 
-        przycisk_1.grid(row=4, column=0, padx=1, pady=1)
-        przycisk_2.grid(row=4, column=1, padx=1, pady=1)
-        przycisk_5.grid(row=4, column=2, padx=1, pady=1)
+        przycisk_1.grid(row=4, column=0, padx=1, pady=1,sticky=W+S+E+N)
+        przycisk_2.grid(row=4, column=1, padx=1, pady=1,sticky=W+S+E+N)
+        przycisk_5.grid(row=4, column=2, padx=1, pady=1,sticky=W+S+E+N)
 
         # tworze przyciski do wyboru numeru produktu i ustalam obsługe ich kliknięcia, oraz tytuł, rodzaj i wielkosc czcionki w tytule
         przyc1 = Button(self.okno, text="1", command=lambda: self.kliknieto_przycisk(1), font=("Arial", 14, "italic"),
@@ -93,20 +93,95 @@ class Interfejs_automatu:
         przyc0 = Button(self.okno, text="0", command=lambda: self.kliknieto_przycisk(0), font=("Arial", 14, "italic"),
                         foreground="white", background='black')
 
-        # ustalam położenie przycisków
-        przyc1.grid(row=8, column=0, padx=1, pady=1)
-        przyc2.grid(row=8, column=1, padx=1, pady=1)
-        przyc3.grid(row=8, column=2, padx=1, pady=1)
+        # ustalam położenie przycisków i ich rozciagniecie
+        przyc1.grid(row=8, column=0, padx=1, pady=1,sticky=W+S+E+N)
+        przyc2.grid(row=8, column=1, padx=1, pady=1,sticky=W+S+E+N)
+        przyc3.grid(row=8, column=2, padx=1, pady=1,sticky=W+S+E+N)
 
-        przyc4.grid(row=9, column=0, padx=1, pady=1)
-        przyc5.grid(row=9, column=1, padx=1, pady=1)
-        przyc6.grid(row=9, column=2, padx=1, pady=1)
+        przyc4.grid(row=9, column=0, padx=1, pady=1,sticky=W+S+E+N)
+        przyc5.grid(row=9, column=1, padx=1, pady=1,sticky=W+S+E+N)
+        przyc6.grid(row=9, column=2, padx=1, pady=1,sticky=W+S+E+N)
 
-        przyc7.grid(row=10, column=0, padx=1, pady=1)
-        przyc8.grid(row=10, column=1, padx=1, pady=1)
-        przyc9.grid(row=10, column=2, padx=1, pady=1)
+        przyc7.grid(row=10, column=0, padx=1, pady=1,sticky=W+S+E+N)
+        przyc8.grid(row=10, column=1, padx=1, pady=1,sticky=W+S+E+N)
+        przyc9.grid(row=10, column=2, padx=1, pady=1,sticky=W+S+E+N)
 
-        przyc0.grid(row=11, column=1, padx=1, pady=1)
+        przyc0.grid(row=11, column=1, padx=1, pady=1,sticky=W+S+E+N)
+
+        ety = Label(self.okno, text='Napoje')  # tworze etykiete z tytułem Napoje
+        ety.grid(row=13, column=1, padx=5, pady=5)  # ustalam ułożenie etykiety
+        ety.config(font=("Arial", 15, "italic"), foreground="white",
+                   background='black')  # ustalam rodzaj czcionki i jej wielkość, kolor tła i czcionki
+
+        # tworze etykiety z numerami produktow i ich nazwami
+        ety1 = Label(self.okno, text='30:woda gazowana')
+        ety2 = Label(self.okno, text='31:woda niegazowana')
+        ety3 = Label(self.okno, text='32:sok pomarańczowy')
+        ety4 = Label(self.okno, text='33:sok porzeczkowy')
+        ety5 = Label(self.okno, text='34:sok jabłkowy')
+        ety6 = Label(self.okno, text='35:mirinda')
+        ety7 = Label(self.okno, text='36:pepsi')
+        ety8 = Label(self.okno, text='37:pepsi light')
+        ety9 = Label(self.okno, text='38:cola')
+        ety10 = Label(self.okno, text='39:cola zero')
+        ety11 = Label(self.okno, text='40:nestea brzoskwiniowe')
+        ety12 = Label(self.okno, text='41:nestea cytrynowe')
+        ety13 = Label(self.okno, text='42:nestea zielona herbata')
+        ety14 = Label(self.okno, text='43:tymbark pomarańcza-mięta')
+        ety15 = Label(self.okno, text='44:tymbark jabłko-brzoskwinia')
+        ety16 = Label(self.okno, text='45:tymbark jabłko-wiśnia')
+        ety17 = Label(self.okno, text='46:tymbark jabłko-kiwi')
+        ety18 = Label(self.okno, text='47:sprite')
+        ety19 = Label(self.okno, text='48:7up')
+        ety20 = Label(self.okno, text='49:oranżada cytrynowa')
+        ety21 = Label(self.okno, text='50:oranżada wiśniowa')
+
+        # ustalam ułozennie etykiet i ich wyrowanie
+        ety1.grid(row=14, column=0, padx=1, pady=1, sticky=W)
+        ety2.grid(row=14, column=1, padx=1, pady=1, sticky=W)
+        ety3.grid(row=14, column=2, padx=1, pady=1, sticky=W)
+        ety4.grid(row=15, column=0, padx=1, pady=1, sticky=W)
+        ety5.grid(row=15, column=1, padx=1, pady=1, sticky=W)
+        ety6.grid(row=15, column=2, padx=1, pady=1, sticky=W)
+        ety7.grid(row=16, column=0, padx=1, pady=1, sticky=W)
+        ety8.grid(row=16, column=1, padx=1, pady=1, sticky=W)
+        ety9.grid(row=16, column=2, padx=1, pady=1, sticky=W)
+        ety10.grid(row=17, column=0, padx=1, pady=1, sticky=W)
+        ety11.grid(row=17, column=1, padx=1, pady=1, sticky=W)
+        ety12.grid(row=17, column=2, padx=1, pady=1, sticky=W)
+        ety13.grid(row=18, column=0, padx=1, pady=1, sticky=W)
+        ety14.grid(row=18, column=1, padx=1, pady=1, sticky=W)
+        ety15.grid(row=18, column=2, padx=1, pady=1, sticky=W)
+        ety16.grid(row=19, column=0, padx=1, pady=1, sticky=W)
+        ety17.grid(row=19, column=1, padx=1, pady=1, sticky=W)
+        ety18.grid(row=19, column=2, padx=1, pady=1, sticky=W)
+        ety19.grid(row=20, column=0, padx=1, pady=1, sticky=W)
+        ety20.grid(row=20, column=1, padx=1, pady=1, sticky=W)
+        ety21.grid(row=20, column=2, padx=1, pady=1, sticky=W)
+
+        # ustalam kolor tla, kolor,rodzaj i wielkosc czcionki w etykietach
+        ety1.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety2.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety3.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety4.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety5.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety6.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety7.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety8.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety9.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety10.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety11.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety12.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety13.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety14.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety15.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety16.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety17.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety18.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety19.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety20.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+        ety21.config(font=("Arial", 11, "italic"), foreground="white", background='black')
+
     def run(self):
         self.okno.mainloop()#uruchamiam okno
 

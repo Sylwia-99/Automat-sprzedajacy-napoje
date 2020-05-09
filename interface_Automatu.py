@@ -1,5 +1,6 @@
 from system_Automatu import Automat_z_napojami #importuje moduł system_Automatu
 from tkinter import*
+import time
 automat = Automat_z_napojami() #wywoluje konsturktor głownej klasy systemu_Automatu
 class Interfejs_automatu:
     def __init__(self):
@@ -58,6 +59,18 @@ class Interfejs_automatu:
         przycisk_5 = Button(self.okno, text="5 zł", command=lambda: self.wrzucono_monete(500),
                             font=("Arial", 14, "italic"), foreground="white", background='black')
 
+        # dodaje przyciski do wrzucania monet do zmiennej klasy Interfejs_automatu przyciski_monety(listy)
+        self.przyciski_monety.append(przycisk1)
+        self.przyciski_monety.append(przycisk2)
+        self.przyciski_monety.append(przycisk5)
+        self.przyciski_monety.append(przycisk10)
+        self.przyciski_monety.append(przycisk20)
+        self.przyciski_monety.append(przycisk50)
+        self.przyciski_monety.append(przycisk_1)
+        self.przyciski_monety.append(przycisk_2)
+        self.przyciski_monety.append(przycisk_5)
+        self.przyciski_monety.append(przycisk0)
+
         # ustalam położenie przycisków i ich rozciagniecie
         przycisk1.grid(row=2, column=0, padx=1, pady=1,sticky=W+S+E+N)
         przycisk2.grid(row=2, column=1, padx=1, pady=1,sticky=W+S+E+N)
@@ -70,6 +83,7 @@ class Interfejs_automatu:
         przycisk_1.grid(row=4, column=0, padx=1, pady=1,sticky=W+S+E+N)
         przycisk_2.grid(row=4, column=1, padx=1, pady=1,sticky=W+S+E+N)
         przycisk_5.grid(row=4, column=2, padx=1, pady=1,sticky=W+S+E+N)
+
 
         # tworze przyciski do wyboru numeru produktu i ustalam obsługe ich kliknięcia, oraz tytuł, rodzaj i wielkosc czcionki w tytule
         przyc1 = Button(self.okno, text="1", command=lambda: self.kliknieto_przycisk(1), font=("Arial", 14, "italic"),
@@ -92,6 +106,18 @@ class Interfejs_automatu:
                         foreground="white", background='black')
         przyc0 = Button(self.okno, text="0", command=lambda: self.kliknieto_przycisk(0), font=("Arial", 14, "italic"),
                         foreground="white", background='black')
+
+        # dodaje przyciski do wyboru numeru produktu do zmiennej klasy Interfejs_automatu pinpad(listy)
+        self.pinpad.append(przyc1)
+        self.pinpad.append(przyc2)
+        self.pinpad.append(przyc3)
+        self.pinpad.append(przyc4)
+        self.pinpad.append(przyc5)
+        self.pinpad.append(przyc6)
+        self.pinpad.append(przyc7)
+        self.pinpad.append(przyc8)
+        self.pinpad.append(przyc9)
+        self.pinpad.append(przyc0)
 
         # ustalam położenie przycisków i ich rozciagniecie
         przyc1.grid(row=8, column=0, padx=1, pady=1,sticky=W+S+E+N)
@@ -189,12 +215,35 @@ class Interfejs_automatu:
         self.okno.quit() #zamykam okno
         self.okno.destroy() #zwalniam zasoby zajete przez okno
 
+    wrzucone=0
     def wrzucono_monete(self,moneta):
+        self.przelacz_monety(False)#ustawiam stan przycisku DISABLED-wylaczony
+        self.wpis0.delete(0, END)  # czyszcze pole wpis0
+        self.wrzucone += moneta  # zwiekszam wartosc zmiennej wrzucone o wartosc monety
+        self.wpis0.insert(0, self.wrzucone / 100)  # wprowadzam tekst do pola wpis0
+        self.okno.update()  # przetwarzam okno
+        time.sleep(1)
         automat.wrzucMonete(moneta) #wywoluje funkcje wrzucMonete z klasy Automat_z_napojami
+        self.przelacz_monety(True)  # ustawiam stan przycisku na NORMAL-wlaczony
 
     def kliknieto_przycisk(self,numer):
         automat.wybierz(str(numer)) #wywoluje funkcje wybierz z klasy Automat_z_napojami
 
+    przyciski_monety=[]#lista przysisków do wrzucania monet
+    def przelacz_monety(self,wlacz_wylacz):
+        for przycisk in self.przyciski_monety:
+            if wlacz_wylacz==True:
+                przycisk.config(state=NORMAL)#ustawiam stan przycisku na NORMAL-wlaczony
+            else:
+                przycisk.config(state=DISABLED)#ustawiam stan przycisku DISABLED-wylaczony
+
+    pinpad=[]#lista przysisków do wyboru numeru kodu
+    def przelacz_pinpad(self,wlacz_wylacz):
+        for przycisk in self.pinpad:
+            if wlacz_wylacz==True:
+                przycisk.config(state=NORMAL)#ustawiam stan przycisku na NORMAL-wlaczony
+            else:
+                przycisk.config(state=DISABLED)#ustawiam stan przycisku na DISABLED-wylaczony
 
 if __name__=="__main__":
     interfejs=Interfejs_automatu()

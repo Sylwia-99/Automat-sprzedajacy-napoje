@@ -1,6 +1,7 @@
 from system_Automatu import Automat_z_napojami #importuje moduł system_Automatu
 from tkinter import*
 import time
+from tkinter import messagebox #do wyswietlania komunikatow
 automat = Automat_z_napojami() #wywoluje konsturktor głownej klasy systemu_Automatu
 class Interfejs_automatu:
     def __init__(self):
@@ -33,9 +34,9 @@ class Interfejs_automatu:
         przycisk.bind("<Button-1>", self.zamknij)  # ustalam,że przycisk reaguje na pliknięcie na niego myszką
         przycisk.config(font=("Arial", 10, "italic"), background="silver",foreground='red')  # ustalam rodzaj czcionki i jej wielkość oraz kolor przycisku i czcionki
 
-        przycisk0 = Button(self.okno, text="Przerwij",command=self.zamknij)  # tworze przycisk Przerwij i ustalam obsługe jego kliknięcia
+        przycisk0 = Button(self.okno, text="Przerwij",command=self.przerwij)  # tworze przycisk Przerwij i ustalam obsługe jego kliknięcia
         przycisk0.grid(row=6, column=1, padx=4, pady=4)  # ustalam ułożenie przycisku
-        przycisk0.bind("<Button-1>", self.zamknij)  # ustalam,że przycisk reaguje na pliknięcie na niego myszką
+        przycisk0.bind("<Button-1>", self.przerwij)  # ustalam,że przycisk reaguje na pliknięcie na niego myszką
         przycisk0.config(font=("Arial", 12, "italic"), foreground="black",
                          background='silver')  # ustalam rodzaj czcionki i jej wielkość oraz kolor przycisku i czcionki
 
@@ -245,7 +246,63 @@ class Interfejs_automatu:
             else:
                 przycisk.config(state=DISABLED)#ustawiam stan przycisku na DISABLED-wylaczony
 
+    def na_informacje(self,info):
+        kod=str(info)
+        self.wpis.delete(0,END) #czyszcze pole wpis
+        self.wpis.insert(0,kod) #wprowadzam tekst do pola wpis
+        self.okno.update() #przetwarzam okno
+
+        time.sleep(1)
+        self.wpis.delete(0,END) #czyszcze pole wpis
+        self.przelacz_pinpad(True) #ustawiam stan przycisku na NORMAL-wlaczony
+
+    def na_kod(self, kod):
+        kod = str(kod)
+        self.wpis.delete(0, END)  # czyszcze pole wpis
+        self.wpis.insert(0, kod)  # wprowadzam tekst do pola
+
+    def wrzucanie_monet(self,kwota):
+        self.przelacz_pinpad(False) #ustawiam stan przycisku DISABLED-wylaczony
+        messagebox.showinfo("UWAGA", "Cena: " + str(kwota / 100) + "        WRZUC MONETY ") #tworze nowe okienko, by wyświetlić informacje
+
+    def zwrot_pieniedzy(self,monety):
+        self.wrzucone=0 #zeruje wartość wrzuconych monet
+        for wartosc,ilosc in monety.items():
+            if ilosc>0:
+                if wartosc<100:
+                    grzl=str(wartosc)+"gr"
+                else:
+                    grzl = str(wartosc//100) + "zl"
+                self.wpis0.delete(0,END) #czyszcze pole wpis0
+                messagebox.showinfo("UWAGA", "WYDANO {} razy {}".format(ilosc,grzl)) #tworze nowe okienko, by wyświetlić informacje
+                self.okno.update() #przetwarzam okno
+                time.sleep(1)
+        self.wpis0.delete(0,END) #czyszcze pole wpis0
+
+    def wydano_produkt(self,produkt):
+        self.wrzucone=0 #zeruje wartość wrzuconych monet
+        messagebox.showinfo("UWAGA","WYDANO PRODUKT "+produkt) #tworze nowe okienko, by wyświetlić informacje
+        self.wpis.delete(0,END) #czyszcze pole wpis
+        self.przelacz_pinpad(True) #ustawiam stan przycisku na NORMAL-wlaczony
+        self.wpis.delete(0,END) #czyszcze pole wpis
+
+    def przerwij(self,produkt):
+        self.wrzucone=0
+        self.przelacz_monety(False) #ustawiam stan przycisku DISABLED-wylaczony
+        self.przelacz_pinpad(False) #ustawiam stan przycisku DISABLED-wylaczony
+        automat.przerwij() #wywoluje funkcje przerwij z klasy Automat_z_napojami
+        self.przelacz_pinpad(True) #ustawiam stan przycisku na NORMAL-wlaczony
+        self.przelacz_monety(True) #ustawiam stan przycisku na NORMAL-wlaczony
+        self.wpis.delete(0,END)#czyszcze pole wpis0
+
+
+
 if __name__=="__main__":
     interfejs=Interfejs_automatu()
     interfejs.interfejs()
+    automat.onBlad(interfejs.na_informacje)
+    automat.onZmianaKodu(interfejs.na_kod)
+    automat.onCzekajNaPieniadze(interfejs.wrzucanie_monet)
+    automat.onZwrocReszte(interfejs.zwrot_pieniedzy)
+    automat.onWydajProdukt(interfejs.wydano_produkt)
     interfejs.run()

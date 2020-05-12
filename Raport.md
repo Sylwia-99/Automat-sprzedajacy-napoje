@@ -6,11 +6,11 @@ Jako bibliotekę graficzną wybrałam **Tkinter**, który był polecony przez pr
 Dokumentacja nie do końca spełniała moje oczekiwania, ale dzięki paru instruktarzom na YT myśle, że poradziłam 
 sobie całkiem nieźle.
 
-##Budowa
+## Budowa
 Podzieliłam projekt na główny plik- system_Automatu, który zawiera główną logikę Automatu, oraz moduł- interface_Automatu, w którym
 zajmuję się logiką interfacu tego Auomatu.
 
-##Napotkane problemy
+## Napotkane problemy
 ?
 
  

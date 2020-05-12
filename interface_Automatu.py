@@ -295,6 +295,19 @@ class Interfejs_automatu:
         self.przelacz_monety(True) #ustawiam stan przycisku na NORMAL-wlaczony
         self.wpis.delete(0,END)#czyszcze pole wpis0
 
+    def nie_moze_wydac(self):
+        self.wrzucone=0 #zeruje wartość wrzuconych monet
+        messagebox.showinfo("UWAGA","TYLKO ODLICZONA KWOTA") #tworze nowe okienko, by wyświetlić informacje
+        self.wpis.delete(0,END) #czyszcze pole wpis
+        self.przelacz_pinpad(False) #ustawiam stan przycisku na DISABLED-wylaczony
+        self.wpis.delete(0,END) #czyszcze pole wpis
+
+    def nie_ma_w_automacie(self,produkt):
+        messagebox.showinfo("UWAGA","BRAK TOWARU W AUTOMACIE") #tworze nowe okienko, by wyświetlić informacje
+        self.wpis.delete(0,END) #czyszcze pole wpis
+        self.przelacz_pinpad(True) #ustawiam stan przycisku na NORMAL-wlaczony
+        self.wpis.delete(0,END) #czyszcze pole wpis
+
 
 
 if __name__=="__main__":
@@ -305,4 +318,6 @@ if __name__=="__main__":
     automat.onCzekajNaPieniadze(interfejs.wrzucanie_monet)
     automat.onZwrocReszte(interfejs.zwrot_pieniedzy)
     automat.onWydajProdukt(interfejs.wydano_produkt)
+    automat.onNiemaWAautomacie(interfejs.nie_ma_w_automacie)
+    automat.onTylkoOdliczonaKwota(interfejs.nie_moze_wydac)
     interfejs.run()

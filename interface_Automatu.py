@@ -34,16 +34,22 @@ class Interfejs_automatu:
         """
         konstruktor klasy
         """
-        pass
-    okno = Tk() #towrze główne okno
-    okno.resizable(width=True, height=True)  # pozwalam na rozciaganie okna
-    okno.configure(background='black') #ustalam tlo okna
+        self.okno = Tk()  # towrze główne okno
+        self.okno.resizable(width=True, height=True)  # pozwalam na rozciaganie okna
+        self.okno.configure(background='black')  # ustalam tlo okna
 
-    wpis0 = Entry(okno, width=30,background='silver',foreground='black') #tworze puste pole, ustawiam jego szerokosc, kolor tła i czcionki
-    wpis0.grid(row=1, column=1, padx=1, pady=1)#ustalam ułożenie i wielkosc pola
+        self.wpis0 = Entry(self.okno, width=30, background='silver',
+                      foreground='black')  # tworze puste pole, ustawiam jego szerokosc, kolor tła i czcionki
+        self.wpis0.grid(row=1, column=1, padx=1, pady=1)  # ustalam ułożenie i wielkosc pola
 
-    wpis = Entry(okno, width=30,background='silver',foreground='black') #tworze puste pole, ustawiam jego szerokosc, kolor tła i czcionki
-    wpis.grid(row=7, column=1, padx=1, pady=1) #ustalam ułożenie i wielkosc pola
+        self.wpis = Entry(self.okno, width=30, background='silver',
+                     foreground='black')  # tworze puste pole, ustawiam jego szerokosc, kolor tła i czcionki
+        self.wpis.grid(row=7, column=1, padx=1, pady=1)  # ustalam ułożenie i wielkosc pola
+
+        self.wrzucone = 0
+        self.przyciski_monety = []  # lista przysisków do wrzucania monet
+        self.pinpad = []  # lista przysisków do wyboru numeru kodu
+
 
     def interfejs(self):
         """
@@ -254,7 +260,6 @@ class Interfejs_automatu:
         self.okno.quit() #zamykam okno
         self.okno.destroy() #zwalniam zasoby zajete przez okno
 
-    wrzucone=0
     def wrzucono_monete(self,moneta):
         """
         funkcja do obsługi przycisków do wrzucania monet, by dodawać wrzucone monety do schowka, wyświetlać sume wrzuconych monet
@@ -277,7 +282,6 @@ class Interfejs_automatu:
         """
         automat.wybierz(str(numer)) #wywoluje funkcje wybierz z klasy Automat_z_napojami
 
-    przyciski_monety=[]#lista przysisków do wrzucania monet
     def przelacz_monety(self,wlacz_wylacz):
         """
         funkcja do ustawiania stanu przycisków do wrzucania monet
@@ -289,7 +293,6 @@ class Interfejs_automatu:
             else:
                 przycisk.config(state=DISABLED)#ustawiam stan przycisku DISABLED-wylaczony
 
-    pinpad=[]#lista przysisków do wyboru numeru kodu
     def przelacz_pinpad(self,wlacz_wylacz):
         """
         funkcja do ustawiania stanu przycisków do wybierania numeru produktu

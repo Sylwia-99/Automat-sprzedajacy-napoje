@@ -2,33 +2,35 @@
 ## Przygotowanie do projektu
 Jako srodowisko wybrałam **PyCharm**, ponieważ dobrze mi się w nim pracuje.
 
-Jako bibliotekę graficzną wybrałam **Tkinter**, który był polecony przez prowadzącego zajęcia. 
+Biblioteką graficzną, którą wybrałam był **Tkinter** polecony przez prowadzącego zajęcia. 
 Dokumentacja nie do końca spełniała moje oczekiwania, ale dzięki paru instruktarzom na YT myśle, że poradziłam 
 sobie całkiem nieźle.
 
 ## Budowa
-Podzieliłam projekt na główny plik-interface_Automatu, w którym
-zajmuję się logiką interfacu tego Automatu. Interface posiada metody potrzebne w razie testów opisanych w projekcie. Między innymi obsługi przycisków przerwij (opisany w projekcie) i dodatkowo zamknij.
-Dzięki messagebox wyswietlają się też potrzebne okienka. Np z informacją o wydawaniu reszty, o tym jaki produkt wybralśmy i ile on kosztuje.
-Oraz moduł- system_Automatu, który zawiera główną logikę Automatu.(Dzieki klasie PojemnikMonet przechowuje monety:nominaly i ich ilości. Metody, które są w niej zawarte dodają monety do pojemnika
-zwracają resztę. Natomiast dzięki klasie PojemnikProduktow przechowuje produkty:ich nazwy i numery. Metody znajdujące się w niej
-pozwalają na sprawdzenie ceny, nazwy, sprawdzenie czy produkt jest w Automacie oraz gdy przy zakupie zostanie kupiony dany produkt przyda się metoda zmniejsziwypisz.
-Przydatną klasą jest też WyboKodu, dzieki której możemy wybrać numer kodu(napoju), który chcemy kupić).
+Podzieliłam projekt na główny plik-interface_Automatu, w którym zajmuję się logiką interfacu tego Automatu. Interface posiada metody potrzebne w razie testów opisanych w projekcie. 
+Między innymi obsługi przycisków przerwij (opisany w projekcie) i dodatkowo zamknij(który zamyka okno i zwalnia zajęte przez niego zasoby).
+Dzięki messagebox wyswietlają się też potrzebne okienka, na przykłąd z informacją o wydawaniu reszty, o tym jaki produkt wybraliśmy i ile on kosztuje.
+Oraz moduł- system_Automatu, który zawiera główną logikę Automatu.(Dzięki klasie PojemnikMonet przechowuje monety: nominały i ich ilości. 
+Metody, które są w niej zawarte dodają monety do pojemnika oraz zwracają resztę. Natomiast dzięki klasie PojemnikProduktow przechowuje produkty: ich nazwy i numery. 
+Metody znajdujące się w niej pozwalają na sprawdzenie ceny, nazwy, sprawdzenie czy produkt jest w Automacie oraz gdy przy zakupie zostanie kupiony dany produkt przyda się metoda 
+zmniejsziwypisz.Przydatną klasą jest też WyborKodu, dzięki której możemy wybrać numer kodu(napoju), który chcemy kupić).
 
 ## Napotkane problemy
-Realizacja testów przysporzyła mi problem. Bowiem na początku moj program miał wyrzucac od razu pieniądze wrzucone do pojemnika na Monety, jeśli wcześniej nie było wybranego kodu.
+Problemy przysporzyła mi realizacja testów. Bowiem na początku mój program miał wyrzucać od razu pieniądze wrzucone do pojemnika na Monety, jeśli wcześniej nie było wybranego kodu.
 Jednak test nr 7 wymagał czegoś innego. Musiałam więc delikatnie zmienić zamysł i podzielić metode wrzucMonete na wrzucMonete i SprawdzIWydaj.
-Początkowo nie mogłam sobie tez poradzić z komunikatem Tylko Odliczona Kwota, gdyż pojawiał się nawet, gdy reszta była wydawana.
+Początkowo nie mogłam sobie tez poradzić z komunikatem Tylko Odliczona Kwota, gdyż pojawiał się nawet, gdy reszta była wydawana. Jednak z tym też uporałam sie w miarę szybko.
 
 ## Główne założenia
 Chiałam zrealizować automat z napojami opisany w pliku Opis_Automat_sprzedajacy_napoje.md realizujący zadania podobne do Automatów, z których każdy z nas korzysta na codzień.
 Dzięki wybraniu (z spisu produktów dostępnych w automacie) produktu i wrzuceniu odpowiednich monet każdy może kupić napój, na który ma ochotę. 
 
 ## Co udało się zrealizować
-Myślę, że zrealizowałam wszystko, co potrzebne. Automat pozwala na wybranie kodu, zapłate i cieszenie się pysznymi napojami. Gdy niestety zabraknie lub asortyment będzie wykupiony dostajemy informacje o braku produktu w automacie.
-Kiedy już zdecysyjemy się na dany napój, wrzucimy pieniądze, ale najdzie nas ochota na coś innego to nie wszystko stracone. Na szczęście istnieje przycisk przerwij, ktory pozwala na przewanie tranzakcji i oddanie nam wrzuconej kwoty.
-Myślę, ze to iż kolory istawione na automacie są czarno białe. Czarne tło i napisy w kolorze białym niedość, ze nie męczą tak oczu, jak odwrotna postać kolorystyczna to cieszą oczy osobom kochającym czerń(Mi na pewno).
-Testy, które powinny zostać przeprowadzone są udokumentowane w pliku system_Automatu na samym dole. W komentarzach mamy wyniki testów. Więc nawet nie trzeba kompilowac kodu, by sprawdzić, czy zadanie zostało zrealizowane.
+Myślę, że zrealizowałam wszystko, co potrzebne. Automat pozwala na wybranie kodu, zapłate i cieszenie się pysznymi napojami. Gdy niestety napoju nie ma w automacie(wpisany zły kod)
+lub asortyment jest wykupiony dostajemy informację o braku produktu w automacie. Kiedy już zdecydujemy się na dany napój, wrzucimy pieniądze, ale najdzie nas ochota na coś innego,
+to nie wszystko stracone. Na szczęście istnieje przycisk przerwij, ktory pozwala na przerwanie tranzakcji i oddanie nam wrzuconej już kwoty. Myślę, że to iż kolory ustawione na automacie
+są czarno białe. Czarne tło i napisy w kolorze białym niedość, że nie męczą tak oczu, jak odwrotna postać kolorystyczna to cieszą oczy osobom kochające czerń(mi na pewno).
+Testy, które powinny zostać przeprowadzone są udokumentowane w pliku system_Automatu na samym dole. W komentarzach mamy wyniki testów. 
+Więc nawet nie trzeba kompilowac kodu, by sprawdzić, czy zadanie zostało zrealizowane. [Tutaj link, do szybszego sprawdzenia](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/beb994f96405f62219eaf5e3747a128ba1775786/system_Automatu.py#L375-L463)
 
 ## Linki do wymaganych w projeckie konstrukcji
 ### a. Lambda-wyrażenia: 

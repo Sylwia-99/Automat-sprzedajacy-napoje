@@ -8,16 +8,16 @@ sobie całkiem nieźle.
 ## Budowa
 Podzieliłam projekt na główny plik-interface_Automatu, w którym zajmuję się logiką interfacu tego Automatu. Interface posiada metody potrzebne w razie testów opisanych w projekcie. 
 Między innymi obsługi przycisków przerwij (opisany w projekcie) i dodatkowo zamknij(który zamyka okno i zwalnia zajęte przez niego zasoby).
-Dzięki messagebox wyswietlają się też potrzebne okienka, na przykłąd z informacją o wydawaniu reszty, o tym jaki produkt wybraliśmy i ile on kosztuje.
+Dzięki messagebox wyswietlają się też potrzebne okienka, na przykład z informacją o wydawaniu reszty, o tym jaki produkt wybraliśmy i ile on kosztuje.
 Oraz moduł- system_Automatu, który zawiera główną logikę Automatu.(Dzięki klasie PojemnikMonet przechowuje monety: nominały i ich ilości. 
 Metody, które są w niej zawarte dodają monety do pojemnika oraz zwracają resztę. Natomiast dzięki klasie PojemnikProduktow przechowuje produkty: ich nazwy i numery. 
 Metody znajdujące się w niej pozwalają na sprawdzenie ceny, nazwy, sprawdzenie czy produkt jest w Automacie oraz gdy przy zakupie zostanie kupiony dany produkt przyda się metoda 
-zmniejsziwypisz.Przydatną klasą jest też WyborKodu, dzięki której możemy wybrać numer kodu(napoju), który chcemy kupić).
+zmniejsziwypisz. Przydatną klasą jest też WyborKodu, dzięki której możemy wybrać numer kodu(napoju), który chcemy kupić).
 
 ## Napotkane problemy
-Problemy przysporzyła mi realizacja testów. Bowiem na początku mój program miał wyrzucać od razu pieniądze wrzucone do pojemnika na Monety, jeśli wcześniej nie było wybranego kodu.
+Problemy przysporzyła mi realizacja testów, bowiem na początku mój program miał wyrzucać od razu pieniądze wrzucone do pojemnika na Monety, jeśli wcześniej nie było wybranego kodu.
 Jednak test nr 7 wymagał czegoś innego. Musiałam więc delikatnie zmienić zamysł i podzielić metode wrzucMonete na wrzucMonete i SprawdzIWydaj.
-Początkowo nie mogłam sobie tez poradzić z komunikatem Tylko Odliczona Kwota, gdyż pojawiał się nawet, gdy reszta była wydawana. Jednak z tym też uporałam sie w miarę szybko.
+Początkowo nie mogłam sobie też poradzić z komunikatem Tylko Odliczona Kwota, gdyż pojawiał się nawet, gdy reszta była wydawana. Jednak z tym też uporałam sie w miarę szybko.
 
 ## Główne założenia
 Chiałam zrealizować automat z napojami opisany w pliku Opis_Automat_sprzedajacy_napoje.md realizujący zadania podobne do Automatów, z których każdy z nas korzysta na codzień.
@@ -26,10 +26,10 @@ Dzięki wybraniu (z spisu produktów dostępnych w automacie) produktu i wrzucen
 ## Co udało się zrealizować
 Myślę, że zrealizowałam wszystko, co potrzebne. Automat pozwala na wybranie kodu, zapłate i cieszenie się pysznymi napojami. Gdy niestety napoju nie ma w automacie(wpisany zły kod)
 lub asortyment jest wykupiony dostajemy informację o braku produktu w automacie. Kiedy już zdecydujemy się na dany napój, wrzucimy pieniądze, ale najdzie nas ochota na coś innego,
-to nie wszystko stracone. Na szczęście istnieje przycisk przerwij, ktory pozwala na przerwanie tranzakcji i oddanie nam wrzuconej już kwoty. Myślę, że to iż kolory ustawione na automacie
-są czarno białe. Czarne tło i napisy w kolorze białym niedość, że nie męczą tak oczu, jak odwrotna postać kolorystyczna to cieszą oczy osobom kochające czerń(mi na pewno).
+to nie wszystko stracone, ponieważ istnieje przycisk przerwij, ktory pozwala na przerwanie transakcji i oddanie nam wrzuconej już kwoty. Kolory ustawione na automacie
+są czarno białe. Czarne tło i napisy w kolorze białym niedość, że nie męczą tak oczu, jak odwrotna postać kolorystyczna to cieszą oczy osobom kochającym czerń(mi na pewno).
 Testy, które powinny zostać przeprowadzone są udokumentowane w pliku system_Automatu na samym dole. W komentarzach mamy wyniki testów. 
-Więc nawet nie trzeba kompilowac kodu, by sprawdzić, czy zadanie zostało zrealizowane. [Tutaj link, do szybszego sprawdzenia](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/beb994f96405f62219eaf5e3747a128ba1775786/system_Automatu.py#L375-L463)
+Więc nawet nie trzeba kompilować kodu, by sprawdzić, czy zadanie zostało zrealizowane. [Tutaj link, do szybszego sprawdzenia](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/beb994f96405f62219eaf5e3747a128ba1775786/system_Automatu.py#L375-L463)
 
 ## Linki do wymaganych w projeckie konstrukcji
 ### a. Lambda-wyrażenia: 
@@ -42,9 +42,9 @@ Więc nawet nie trzeba kompilowac kodu, by sprawdzić, czy zadanie zostało zrea
 - [Obsługa przycisków do wrzucania monet](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/bd7d65cca29d0ed8efa2ab0a9402c89cc1d21324/interface_Automatu.py#L82-L99)
 - [Obsługa przycisków do wyboru numeru produktu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/bd7d65cca29d0ed8efa2ab0a9402c89cc1d21324/interface_Automatu.py#L128-L147)
 ### b. Dictionary comprehensions:
-- [zeruje monety w metodzie zwrocWartosc](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L42)
-- [zeruje monety w metodzie sprawdzIWydaj](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L306)
-- [zeruje monety w metodzie przerwij](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L319)
+- [użycie w metodzie zwrocWartosc](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L42)
+- [użycie w metodzie sprawdzIWydaj](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L306)
+- [użycie w metodzie przerwij](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L319)
 ### c. Klasy
 - [Klasa realizująca funkcjonalność programu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L199)
 - [Klasa odpowiedzialna za interfejs użytkownika](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/bd7d65cca29d0ed8efa2ab0a9402c89cc1d21324/interface_Automatu.py#L6)

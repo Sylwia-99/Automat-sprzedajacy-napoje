@@ -29,7 +29,7 @@ lub asortyment jest wykupiony dostajemy informację o braku produktu w automacie
 to nie wszystko stracone, ponieważ istnieje przycisk przerwij, ktory pozwala na przerwanie transakcji i oddanie nam wrzuconej już kwoty. Kolory ustawione na automacie
 są czarno białe. Czarne tło i napisy w kolorze białym niedość, że nie męczą tak oczu, jak odwrotna postać kolorystyczna to cieszą oczy osobom kochającym czerń(mi na pewno).
 Testy, które powinny zostać przeprowadzone są udokumentowane w pliku system_Automatu na samym dole. W komentarzach mamy wyniki testów. 
-Więc nawet nie trzeba kompilować kodu, by sprawdzić, czy zadanie zostało zrealizowane. [Tutaj link, do szybszego sprawdzenia](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/beb994f96405f62219eaf5e3747a128ba1775786/system_Automatu.py#L375-L463)
+Więc nawet nie trzeba kompilować kodu, by sprawdzić, czy zadanie zostało zrealizowane. [Tutaj link, do szybszego sprawdzenia](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/bd7d65cca29d0ed8efa2ab0a9402c89cc1d21324/system_Automatu.py#L375-L463)
 
 ## Linki do wymaganych w projeckie konstrukcji
 ### a. Lambda-wyrażenia: 
@@ -39,8 +39,8 @@ Więc nawet nie trzeba kompilować kodu, by sprawdzić, czy zadanie zostało zre
 - [Użycie Eventu onWydajProdukt](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L372)
 - [Użycie Eventu onNiemaWAautomacie](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L373)
 - [Użycie Eventu onBlad](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L374)
-- [Obsługa przycisków do wrzucania monet](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/bd7d65cca29d0ed8efa2ab0a9402c89cc1d21324/interface_Automatu.py#L82-L99)
-- [Obsługa przycisków do wyboru numeru produktu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/bd7d65cca29d0ed8efa2ab0a9402c89cc1d21324/interface_Automatu.py#L128-L147)
+- [Obsługa przycisków do wrzucania monet](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/382b72a1c8460c53c2f4fb0ce94b7dc2048ec5cb/interface_Automatu.py#L82-L99)
+- [Obsługa przycisków do wyboru numeru produktu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/382b72a1c8460c53c2f4fb0ce94b7dc2048ec5cb/interface_Automatu.py#L120-L139)
 ### b1. Dictionary comprehensions:
 - [użycie do wyzerowania monet w schowku MonetyDoWydania w metodzie zwrocWartosc](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L42)
 - [użycie do wyzerowania monet w schowku w metodzie sprawdzIWydaj](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L297)

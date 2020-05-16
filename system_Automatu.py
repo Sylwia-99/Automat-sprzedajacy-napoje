@@ -243,17 +243,8 @@ class Automat_z_napojami:
     Stan=Stan.wyborProduktu #ustawiam stan na wyborProduktu
 
     # schowek tymczasowo jest wyzerowany, bo przechowuje tymczasowo wrzucone pieniadze do kasetki
-    MonetyWSchowku={
-        1:0,
-        2:0,
-        5:0,
-        10:0,
-        20:0,
-        50:0,
-        100:0,
-        200:0,
-        500:0
-    }
+    nominaly = [1, 2, 5, 10, 20, 50, 100, 200, 500]
+    MonetyWSchowku = {i: 0 for i in nominaly} #dictionary comprehension tworze pusty schowek MonetyWSchowku
     aktualnaKwotaWSchowku=0
     wybranyProdukt="" #kod produktu
 

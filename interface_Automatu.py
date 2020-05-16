@@ -99,16 +99,8 @@ class Interfejs_automatu:
                             font=("Arial", 14, "italic"), foreground="white", background='black')
 
         # dodaje przyciski do wrzucania monet do zmiennej klasy Interfejs_automatu przyciski_monety(listy)
-        self.przyciski_monety.append(przycisk1)
-        self.przyciski_monety.append(przycisk2)
-        self.przyciski_monety.append(przycisk5)
-        self.przyciski_monety.append(przycisk10)
-        self.przyciski_monety.append(przycisk20)
-        self.przyciski_monety.append(przycisk50)
-        self.przyciski_monety.append(przycisk_1)
-        self.przyciski_monety.append(przycisk_2)
-        self.przyciski_monety.append(przycisk_5)
-        self.przyciski_monety.append(przycisk0)
+        przyciski = [przycisk1, przycisk2, przycisk5, przycisk10, przycisk20, przycisk50, przycisk_1, przycisk_2, przycisk_5]
+        self.przyciski_monety = [n for n in przyciski]  # list comprehension
 
         # ustalam położenie przycisków i ich rozciagniecie
         przycisk1.grid(row=2, column=0, padx=1, pady=1,sticky=W+S+E+N)
@@ -147,16 +139,8 @@ class Interfejs_automatu:
                         foreground="white", background='black')
 
         # dodaje przyciski do wyboru numeru produktu do zmiennej klasy Interfejs_automatu pinpad(listy)
-        self.pinpad.append(przyc1)
-        self.pinpad.append(przyc2)
-        self.pinpad.append(przyc3)
-        self.pinpad.append(przyc4)
-        self.pinpad.append(przyc5)
-        self.pinpad.append(przyc6)
-        self.pinpad.append(przyc7)
-        self.pinpad.append(przyc8)
-        self.pinpad.append(przyc9)
-        self.pinpad.append(przyc0)
+        przyc = [przyc1, przyc2, przyc3, przyc4, przyc5, przyc6, przyc7, przyc8, przyc9, przyc0]
+        self.pinpad = [n for n in przyc]#list comprehension
 
         # ustalam położenie przycisków i ich rozciagniecie
         przyc1.grid(row=8, column=0, padx=1, pady=1,sticky=W+S+E+N)

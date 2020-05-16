@@ -33,22 +33,26 @@ Więc nawet nie trzeba kompilować kodu, by sprawdzić, czy zadanie zostało zre
 
 ## Linki do wymaganych w projeckie konstrukcji
 ### a. Lambda-wyrażenia: 
-- [Użycie Eventu onZwrocReszte](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L378)
-- [Użycie Eventu onZmianaKodu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L379)
-- [Użycie Eventu onCzekajNaPieniadze](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L380)
-- [Użycie Eventu onWydajProdukt](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L381)
-- [Użycie Eventu onNiemaWAautomacie](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L382)
-- [Użycie Eventu onBlad](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L383)
+- [Użycie Eventu onZwrocReszte](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L369)
+- [Użycie Eventu onZmianaKodu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L370)
+- [Użycie Eventu onCzekajNaPieniadze](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L371)
+- [Użycie Eventu onWydajProdukt](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L372)
+- [Użycie Eventu onNiemaWAautomacie](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L373)
+- [Użycie Eventu onBlad](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L374)
 - [Obsługa przycisków do wrzucania monet](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/bd7d65cca29d0ed8efa2ab0a9402c89cc1d21324/interface_Automatu.py#L82-L99)
 - [Obsługa przycisków do wyboru numeru produktu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/bd7d65cca29d0ed8efa2ab0a9402c89cc1d21324/interface_Automatu.py#L128-L147)
-### b. Dictionary comprehensions:
-- [użycie w metodzie zwrocWartosc](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L42)
-- [użycie w metodzie sprawdzIWydaj](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L306)
-- [użycie w metodzie przerwij](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L319)
+### b1. Dictionary comprehensions:
+- [użycie do wyzerowania monet w schowku MonetyDoWydania w metodzie zwrocWartosc](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L42)
+- [użycie do wyzerowania monet w schowku w metodzie sprawdzIWydaj](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L297)
+- [użycie do wyzerowania monet w schowku w metodzie przerwij](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L310)
+- [użycie do tworzenia pustego schowka MonetyWSchowku](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L247)
+### b2.List comprehensions:
+- [użycie do dodania przycisków do wrzucania monet do zmiennej klasy przyciski_monety(lista)](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/interface_Automatu.py#L103)
+- [użycie do dodania przycisków do wyboru kodu do zmiennej klasy pinpad(lista)](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/interface_Automatu.py#L143)
 ### c. Klasy
-- [Klasa realizująca funkcjonalność programu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/fd10d5aec4dbe0d3a37e3a2b59bca55eeb76d631/system_Automatu.py#L199)
-- [Klasa odpowiedzialna za interfejs użytkownika](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/bd7d65cca29d0ed8efa2ab0a9402c89cc1d21324/interface_Automatu.py#L6)
+- [Klasa realizująca funkcjonalność programu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L199)
+- [Klasa odpowiedzialna za interfejs użytkownika](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/interface_Automatu.py#L6)
 ### d. Moduły
-- [Import modułu system_Aautomatu do pliku interface_Automatu.py](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/bd7d65cca29d0ed8efa2ab0a9402c89cc1d21324/interface_Automatu.py#L1)
+- [Import modułu system_Automatu do pliku interface_Automatu.py](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/interface_Automatu.py#L1)
  
 

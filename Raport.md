@@ -44,14 +44,14 @@ Na koniec, by delikatnie poprawić cały kod użyłam pylint i naniosłam popraw
 - [Obsługa przycisków do wyboru numeru produktu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/interface_Automatu.py#L129-L148)
 ### b1. Dictionary comprehensions:
 - [użycie do wyzerowania monet w schowku monety_do_wydania w metodzie zwroc_wartosc](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L45)
-- [użycie do wyzerowania monet w schowku w metodzie sprawdz_i_wydaj](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L300)
+- [użycie do wyzerowania monet w schowku w metodzie sprawdz_i_wydaj](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/f9b232bc69610e9bcd4cd4cc2d1ad880faad1f64/system_Automatu.py#L300)
 - [użycie do wyzerowania monet w schowku w metodzie przerwij](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L313)
 - [użycie do tworzenia pustego schowka monety_w_schowku](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L249)
 ### b2.List comprehensions:
 - [użycie do dodania przycisków do wrzucania monet do zmiennej klasy przyciski_monety(lista)](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/interface_Automatu.py#L113)
 - [użycie do dodania przycisków do wyboru kodu do zmiennej klasy pinpad(lista)](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/interface_Automatu.py#L152)
 ### c. Klasy
-- [Klasa realizująca funkcjonalność programu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L203)
+- [Klasa realizująca funkcjonalność programu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/f9b232bc69610e9bcd4cd4cc2d1ad880faad1f64/system_Automatu.py#L203)
 - [Klasa odpowiedzialna za interfejs użytkownika](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/interface_Automatu.py#L7)
 ### d. Moduły
 - [Import modułu system_Automatu do pliku interface_Automatu.py](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/interface_Automatu.py#L3)

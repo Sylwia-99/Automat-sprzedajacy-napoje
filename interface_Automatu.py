@@ -1,84 +1,93 @@
-from system_Automatu import Automat_z_napojami #importuje moduł system_Automatu
-from tkinter import*
+from tkinter import Label, Tk, Entry, Button, messagebox, W, S, E, N, END, NORMAL, DISABLED
 import time
-from tkinter import messagebox #do wyswietlania komunikatow
-automat = Automat_z_napojami() #wywoluje konsturktor głownej klasy systemu_Automatu
-class Interfejs_automatu:
+import system_Automatu # importuje moduł system_Automatu
+automat = system_Automatu.AutomatZnapojami()  # wywoluje konsturktor głownej klasy systemu_Automatu
+
+
+class InterfejsAutomatu:
     """
-    klasa Interfejs_automatu główna klasa Interfejsu Automatu
+    klasa InterfejsAutomatu główna klasa Interfejsu Automatu
     Zmienne:
-        okno-tworzy główne okno Automatu
-        wpis0-tworzy pole wyświetlające wrzucone monety
-        wpis-tworzy pole wyświetlające wybrany numer napoju
-        wrzucone-przechowuje wartosc wrzoconych monet tymczasowo
-        przyciski_monety- przechowuje liste przycisków wrzucania monet
-        pinpad-przechowuje liste przycisków do wyboru kodu
+        okno-Tworzy główne okno Automatu.
+        wpis0-Tworzy pole wyświetlające wrzucone monety.
+        wpis-Tworzy pole wyświetlające wybrany numer napoju.
+        wrzucone-Przechowuje wartosc wrzoconych monet tymczasowo.
+        przyciski_monety- Przechowuje liste przycisków wrzucania monet.
+        pinpad-Przechowuje liste przycisków do wyboru kodu.
     Metody:
         interfejs() dodaje etykiety, przyciski
-        run() uruchamia interfes, czyli wszystkie elementy okna i samo okno będą zaladowane po jej wywołaniu
-        zamknij(numer) zamyka i niszczy okno głowne okno interfejsu
-        wrzucono_monete(moneta) funkcja do obsługi przycisków do wrzucania monet, by dodawać wrzucone monety do schowka, wyświetlać sume wrzuconych monet
-        kliknieto_przycisk(numer) uruchamia funkcję z klasy Automat_z_napojami(głównej klasy automatu) po kliknięciu odpowiedniego przycisku z numerem
-        przelacz_monety(wlacz_wylacz) ustawia stan przycisków do wrzucania monet
-        przelacz_pinpad(wlacz_wylacz) ustawia stan przycisków do wrzucania monet
-        na_informacje(info) funkcja do przypisania numeru do kodu
-        na_kod(kod)funkcja do wpisywania numeru produktu w polu po kliknieciu przycisków do wyboru produktów
-        wrzucanie_monet(kwota) funkcja do wyświetlania informacji o cenie produktu, który został wybrany
-        zwrot_pieniedzy(monety) funkcja do zwrotu pieniedzy gdy albo klikamy pzerwij, albo trzeba wydac reszte wyskakuje informacja o tym ile reszty zwrociliśmy
-        wydano_produkt(produkt) funkcja do wyswietlania informacji o tym, jaki produkt został kupiony
-        przerwij() funkcja do obsługi przycisku przerwij, by po jego kliknięciu automat oddawał wrzucone monet
-        nie_moze_wydac(self) funkcja do wyświetlenia informacji o tym, że automat nie może wydac reszty i trzeba wrzucić wyliczoną kwote
-        nie_ma_w_automacie(self,produkt) funkcja do wyswietlania informacji o tym, ze nie ma w automacie wybranego produktu
+        run() uruchamia interfes, czyli wszystkie elementy okna i samo okno będą zaladowane po jej wywołaniu.
+        zamknij(numer) zamyka i niszczy okno głowne okno interfejsu.
+        wrzucono_monete(moneta) Do obsługi przycisków, wrzucania monet, by dodawać wrzucone monety do schowka, wyświetlać sume wrzuconych monet.
+        kliknieto_przycisk(numer) Uruchamia funkcję z klasy AutomatZnapojami(głównej klasy automatu) po kliknięciu odpowiedniego przycisku z numerem.
+        przelacz_monety(wlacz_wylacz) Ustawia stan przycisków do wrzucania monet.
+        przelacz_pinpad(wlacz_wylacz) Ustawia stan przycisków do wrzucania monet.
+        na_informacje(info) Funkcja do przypisania numeru do kodu.
+        na_kod(kod) Funkcja do wpisywania numeru produktu w polu po kliknieciu przycisków do wyboru produktów.
+        wrzucanie_monet(kwota) Funkcja do wyświetlania informacji o cenie produktu, który został wybrany.
+        zwrot_pieniedzy(monety) Funkcja do zwrotu pieniedzy gdy albo klikamy pzerwij, albo trzeba wydac reszte wyskakuje informacja o tym ile reszty zwrociliśmy.
+        wydano_produkt(produkt) Funkcja do wyswietlania informacji o tym, jaki produkt został kupiony.
+        przerwij() Funkcja do obsługi przycisku przerwij, by po jego kliknięciu automat oddawał wrzucone monet.
+        nie_moze_wydac(self) Funkcja do wyświetlenia informacji o tym, że automat nie może wydac reszty i trzeba wrzucić wyliczoną kwote.
+        nie_ma_w_automacie(self,produkt) Funkcja do wyswietlania informacji o tym, ze nie ma w automacie wybranego produktu.
     """
     def __init__(self):
         """
-        konstruktor klasy
+        Konstruktor klasy.
         """
         self.okno = Tk()  # towrze główne okno
         self.okno.resizable(width=True, height=True)  # pozwalam na rozciaganie okna
         self.okno.configure(background='black')  # ustalam tlo okna
 
-        self.wpis0 = Entry(self.okno, width=30, background='silver',
-                      foreground='black')  # tworze puste pole, ustawiam jego szerokosc, kolor tła i czcionki
+        # tworze puste pole, ustawiam jego szerokosc, kolor tła i czcionki
+        self.wpis0 = Entry(self.okno, width=30, background='silver', foreground='black')
         self.wpis0.grid(row=1, column=1, padx=1, pady=1)  # ustalam ułożenie i wielkosc pola
 
-        self.wpis = Entry(self.okno, width=30, background='silver',
-                     foreground='black')  # tworze puste pole, ustawiam jego szerokosc, kolor tła i czcionki
+        # tworze puste pole, ustawiam jego szerokosc, kolor tła i czcionki
+        self.wpis = Entry(self.okno, width=30, background='silver', foreground='black')
         self.wpis.grid(row=7, column=1, padx=1, pady=1)  # ustalam ułożenie i wielkosc pola
 
         self.wrzucone = 0
         self.przyciski_monety = []  # lista przysisków do wrzucania monet
         self.pinpad = []  # lista przysisków do wyboru numeru kodu
 
-
     def interfejs(self):
         """
-        Funkcja tworzy etykiety obok pól, przyciski i określa obsługę kliknięcia przycisku
+        Funkcja tworzy etykiety obok pól, przyciski i określa obsługę kliknięcia przycisku.
         """
-        etykieta1 = Label(self.okno, text='Automat z napojami',foreground="white",background='black') #tworze główną etykiete z tytułem Aplikacji, ustalam kolor tla i czcionki
-        etykieta1.grid(row=0, column=1,padx=5, pady=5,sticky=W+S+E+N)#ustalam ułożenie etykiety
-        etykieta1.config(font=("Arial", 16, "italic")) #ustalam rodzaj czcionki i jej wielkość
+        # tworze główną etykiete z tytułem Aplikacji, ustalam kolor tla i czcionki
+        etykieta1 = Label(self.okno, text='Automat z napojami',
+                          foreground="white", background='black')
+        etykieta1.grid(row=0, column=1, padx=5, pady=5, sticky=W+S+E+N)  # ustalam ułożenie etykiety
+        etykieta1.config(font=("Arial", 16, "italic"))  # ustalam rodzaj czcionki i jej wielkość
 
-        etykieta2 = Label(self.okno, text='Wrzucona kwota',foreground="white",background='black') #tworze etykiete z tytułem Wrzucona kwota, ustalam kolor tla i czcionki
-        etykieta2.grid(row=1, column=0,padx=1, pady=1,)#ustalam ułożenie etykiety
-        etykieta2.config(font=("Arial", 13, "italic"))#ustalam rodzaj czcionki i jej wielkość
+        # tworze etykiete z tytułem Wrzucona kwota, ustalam kolor tla i czcionki
+        etykieta2 = Label(self.okno, text='Wrzucona kwota',
+                          foreground="white", background='black')
+        etykieta2.grid(row=1, column=0, padx=1, pady=1, sticky=W+S+E+N)  # ustalam ułożenie etykiety
+        etykieta2.config(font=("Arial", 13, "italic"))  # ustalam rodzaj czcionki i jej wielkość
 
-        etykieta3 = Label(self.okno, text='Wybrany numer',foreground="white",background='black') #tworze etykiete z tytułem Wybrany numer, ustalam kolor tla i czcionki
-        etykieta3.grid(row=7, column=0,padx=4, pady=4)#ustalam ułożenie etykiety
-        etykieta3.config(font=("Arial", 13, "italic"))#ustalam rodzaj czcionki i jej wielkość
+        # tworze etykiete z tytułem Wybrany numer, ustalam kolor tla i czcionki
+        etykieta3 = Label(self.okno, text='Wybrany numer', foreground="white", background='black')
+        etykieta3.grid(row=7, column=0, padx=4, pady=4)  # ustalam ułożenie etykiety
+        etykieta3.config(font=("Arial", 13, "italic"))  # ustalam rodzaj czcionki i jej wielkość
 
-        przycisk = Button(self.okno, text="Zamknij",command=self.zamknij)  # tworze przycisk Zamknij i ustalam obsługe jego kliknięcia
+        # tworze przycisk Zamknij i ustalam obsługe jego kliknięcia
+        przycisk = Button(self.okno, text="Zamknij", command=self.zamknij)
         przycisk.grid(row=22, column=2, padx=4, pady=4, sticky=E)  # ustalam ułożenie przycisku i jego wyrownanie
         przycisk.bind("<Button-1>", self.zamknij)  # ustalam,że przycisk reaguje na pliknięcie na niego myszką
-        przycisk.config(font=("Arial", 10, "italic"), background="silver",foreground='red')  # ustalam rodzaj czcionki i jej wielkość oraz kolor przycisku i czcionki
+        # ustalam rodzaj czcionki, wielkość oraz kolor przycisku i czcionki
+        przycisk.config(font=("Arial", 10, "italic"), background="silver", foreground='red')
 
-        przycisk0 = Button(self.okno, text="Przerwij",command=self.przerwij)  # tworze przycisk Przerwij i ustalam obsługe jego kliknięcia
+        # tworze przycisk Przerwij i ustalam obsługe jego kliknięcia
+        przycisk0 = Button(self.okno, text="Przerwij", command=self.przerwij)
         przycisk0.grid(row=6, column=1, padx=4, pady=4)  # ustalam ułożenie przycisku
         przycisk0.bind("<Button-1>", self.przerwij)  # ustalam,że przycisk reaguje na pliknięcie na niego myszką
-        przycisk0.config(font=("Arial", 12, "italic"), foreground="black",
-                         background='silver')  # ustalam rodzaj czcionki i jej wielkość oraz kolor przycisku i czcionki
+        # ustalam rodzaj czcionki i jej wielkość oraz kolor przycisku i czcionki
+        przycisk0.config(font=("Arial", 12, "italic"),
+                         foreground="black", background='silver')
 
-        # tworze przyciski do wrzucania monet i ustalam obsługe ich kliknięcia, oraz tytuł, rodzaj i wielkosc czcionki w tytule
+        # tworze przyciski do wrzucania monet, ustalam obsługe ich kliknięcia, tytuł, rodzaj i wielkosc czcionki
         przycisk1 = Button(self.okno, text="1 gr", command=lambda: self.wrzucono_monete(1),
                            font=("Arial", 14, "italic"), foreground="white", background='black')
         przycisk2 = Button(self.okno, text="2 gr", command=lambda: self.wrzucono_monete(2),
@@ -99,24 +108,24 @@ class Interfejs_automatu:
                             font=("Arial", 14, "italic"), foreground="white", background='black')
 
         # dodaje przyciski do wrzucania monet do zmiennej klasy Interfejs_automatu przyciski_monety(listy)
-        przyciski = [przycisk1, przycisk2, przycisk5, przycisk10, przycisk20, przycisk50, przycisk_1, przycisk_2, przycisk_5]
+        przyciski = \
+            [przycisk1, przycisk2, przycisk5, przycisk10, przycisk20, przycisk50, przycisk_1, przycisk_2, przycisk_5]
         self.przyciski_monety = [n for n in przyciski]  # list comprehension
 
         # ustalam położenie przycisków i ich rozciagniecie
-        przycisk1.grid(row=2, column=0, padx=1, pady=1,sticky=W+S+E+N)
-        przycisk2.grid(row=2, column=1, padx=1, pady=1,sticky=W+S+E+N)
-        przycisk5.grid(row=2, column=2, padx=1, pady=1,sticky=W+S+E+N)
+        przycisk1.grid(row=2, column=0, padx=1, pady=1, sticky=W+S+E+N)
+        przycisk2.grid(row=2, column=1, padx=1, pady=1, sticky=W+S+E+N)
+        przycisk5.grid(row=2, column=2, padx=1, pady=1, sticky=W+S+E+N)
 
-        przycisk10.grid(row=3, column=0, padx=1, pady=1,sticky=W+S+E+N)
-        przycisk20.grid(row=3, column=1, padx=1, pady=1,sticky=W+S+E+N)
-        przycisk50.grid(row=3, column=2, padx=1, pady=1,sticky=W+S+E+N)
+        przycisk10.grid(row=3, column=0, padx=1, pady=1, sticky=W+S+E+N)
+        przycisk20.grid(row=3, column=1, padx=1, pady=1, sticky=W+S+E+N)
+        przycisk50.grid(row=3, column=2, padx=1, pady=1, sticky=W+S+E+N)
 
-        przycisk_1.grid(row=4, column=0, padx=1, pady=1,sticky=W+S+E+N)
-        przycisk_2.grid(row=4, column=1, padx=1, pady=1,sticky=W+S+E+N)
-        przycisk_5.grid(row=4, column=2, padx=1, pady=1,sticky=W+S+E+N)
+        przycisk_1.grid(row=4, column=0, padx=1, pady=1, sticky=W+S+E+N)
+        przycisk_2.grid(row=4, column=1, padx=1, pady=1, sticky=W+S+E+N)
+        przycisk_5.grid(row=4, column=2, padx=1, pady=1, sticky=W+S+E+N)
 
-
-        # tworze przyciski do wyboru numeru produktu i ustalam obsługe ich kliknięcia, oraz tytuł, rodzaj i wielkosc czcionki w tytule
+        # tworze przyciski do wyboru numeru produktu i ustalam obsługe ich kliknięcia, tytuł, rodzaj i rozmiar czcionki
         przyc1 = Button(self.okno, text="1", command=lambda: self.kliknieto_przycisk(1), font=("Arial", 14, "italic"),
                         foreground="white", background='black')
         przyc2 = Button(self.okno, text="2", command=lambda: self.kliknieto_przycisk(2), font=("Arial", 14, "italic"),
@@ -140,22 +149,22 @@ class Interfejs_automatu:
 
         # dodaje przyciski do wyboru numeru produktu do zmiennej klasy Interfejs_automatu pinpad(listy)
         przyc = [przyc1, przyc2, przyc3, przyc4, przyc5, przyc6, przyc7, przyc8, przyc9, przyc0]
-        self.pinpad = [n for n in przyc]#list comprehension
+        self.pinpad = [n for n in przyc]  # list comprehension
 
         # ustalam położenie przycisków i ich rozciagniecie
-        przyc1.grid(row=8, column=0, padx=1, pady=1,sticky=W+S+E+N)
-        przyc2.grid(row=8, column=1, padx=1, pady=1,sticky=W+S+E+N)
-        przyc3.grid(row=8, column=2, padx=1, pady=1,sticky=W+S+E+N)
+        przyc1.grid(row=8, column=0, padx=1, pady=1, sticky=W+S+E+N)
+        przyc2.grid(row=8, column=1, padx=1, pady=1, sticky=W+S+E+N)
+        przyc3.grid(row=8, column=2, padx=1, pady=1, sticky=W+S+E+N)
 
-        przyc4.grid(row=9, column=0, padx=1, pady=1,sticky=W+S+E+N)
-        przyc5.grid(row=9, column=1, padx=1, pady=1,sticky=W+S+E+N)
-        przyc6.grid(row=9, column=2, padx=1, pady=1,sticky=W+S+E+N)
+        przyc4.grid(row=9, column=0, padx=1, pady=1, sticky=W+S+E+N)
+        przyc5.grid(row=9, column=1, padx=1, pady=1, sticky=W+S+E+N)
+        przyc6.grid(row=9, column=2, padx=1, pady=1, sticky=W+S+E+N)
 
-        przyc7.grid(row=10, column=0, padx=1, pady=1,sticky=W+S+E+N)
-        przyc8.grid(row=10, column=1, padx=1, pady=1,sticky=W+S+E+N)
-        przyc9.grid(row=10, column=2, padx=1, pady=1,sticky=W+S+E+N)
+        przyc7.grid(row=10, column=0, padx=1, pady=1, sticky=W+S+E+N)
+        przyc8.grid(row=10, column=1, padx=1, pady=1, sticky=W+S+E+N)
+        przyc9.grid(row=10, column=2, padx=1, pady=1, sticky=W+S+E+N)
 
-        przyc0.grid(row=11, column=1, padx=1, pady=1,sticky=W+S+E+N)
+        przyc0.grid(row=11, column=1, padx=1, pady=1, sticky=W+S+E+N)
 
         ety = Label(self.okno, text='Napoje')  # tworze etykiete z tytułem Napoje
         ety.grid(row=13, column=1, padx=5, pady=5)  # ustalam ułożenie etykiety
@@ -233,162 +242,164 @@ class Interfejs_automatu:
 
     def run(self):
         """
-        funkcja która uruchamia interfes, czyli wszystkie elementy okna i samo okno będą zaladowane po jej wywołaniu
+        Funkcja która uruchamia interfes, czyli wszystkie elementy okna i samo okno będą zaladowane po jej wywołaniu.
         """
-        self.okno.mainloop()#uruchamiam okno
+        self.okno.mainloop()  # uruchamiam okno
 
-    def zamknij(self,numer):
+    def zamknij(self, numer):
         """
         funkcja która uruchamia zamyka i niszczy okno głowne okno interfejsu
         """
-        self.okno.quit() #zamykam okno
-        self.okno.destroy() #zwalniam zasoby zajete przez okno
+        self.okno.quit()  # zamykam okno
+        self.okno.destroy()  # zwalniam zasoby zajete przez okno
 
-    def wrzucono_monete(self,moneta):
+    def wrzucono_monete(self, moneta):
         """
-        funkcja do obsługi przycisków do wrzucania monet, by dodawać wrzucone monety do schowka, wyświetlać sume wrzuconych monet
-        :param moneta: wartosc monety
+        Funkcja do obsługi przycisków do wrzucania monet, by dodawać wrzucone monety do schowka, wyświetlać sume wrzuconych monet.
+        :param moneta: Wartosc monety.
         """
-        self.przelacz_monety(False)#ustawiam stan przycisku DISABLED-wylaczony
+        self.przelacz_monety(False)  # ustawiam stan przycisku DISABLED-wylaczony
         self.wpis0.delete(0, END)  # czyszcze pole wpis0
         self.wrzucone += moneta  # zwiekszam wartosc zmiennej wrzucone o wartosc monety
         self.wpis0.insert(0, self.wrzucone / 100)  # wprowadzam tekst do pola wpis0
         self.okno.update()  # przetwarzam okno
         time.sleep(1)
-        automat.wrzucMonete(moneta) #wywoluje funkcje wrzucMonete z klasy Automat_z_napojami
+        automat.wrzuc_monete(moneta)  # wywoluje funkcje wrzucMonete z klasy Automat_z_napojami
         self.przelacz_monety(True)  # ustawiam stan przycisku na NORMAL-wlaczony
 
-    def kliknieto_przycisk(self,numer):
+    def kliknieto_przycisk(self, numer):
         """
-        funkcja, która uruchamia funkcję z klasy Automat_z_napojami(głównej klasy automatu)
+        Funkcja, która uruchamia funkcję z klasy Automat_z_napojami(głównej klasy automatu)
         po kliknięciu odpowiedniego przycisku z numerem
-        :param numer: numer produktu
+        :param numer: Numer produktu.
         """
-        automat.wybierz(str(numer)) #wywoluje funkcje wybierz z klasy Automat_z_napojami
+        automat.wybierz(str(numer))   # wywoluje funkcje wybierz z klasy Automat_z_napojami
 
-    def przelacz_monety(self,wlacz_wylacz):
+    def przelacz_monety(self, wlacz_wylacz):
         """
-        funkcja do ustawiania stanu przycisków do wrzucania monet
-        :param wlacz_wylacz: w zależności od jego wartości funkcja ustala, czy przycisk ma być włączony, czy wyłączony
+        Funkcja do ustawiania stanu przycisków do wrzucania monet.
+        :param wlacz_wylacz: W zależności od jego wartości funkcja ustala, czy przycisk ma być włączony, czy wyłączony.
         """
         for przycisk in self.przyciski_monety:
-            if wlacz_wylacz==True:
-                przycisk.config(state=NORMAL)#ustawiam stan przycisku na NORMAL-wlaczony
+            if wlacz_wylacz is True:
+                przycisk.config(state=NORMAL)  # ustawiam stan przycisku na NORMAL-wlaczony
             else:
-                przycisk.config(state=DISABLED)#ustawiam stan przycisku DISABLED-wylaczony
+                przycisk.config(state=DISABLED)  # ustawiam stan przycisku DISABLED-wylaczony
 
-    def przelacz_pinpad(self,wlacz_wylacz):
+    def przelacz_pinpad(self, wlacz_wylacz):
         """
-        funkcja do ustawiania stanu przycisków do wybierania numeru produktu
-        :param wlacz_wylacz: w zależności od jego wartości funkcja ustala, czy przycisk ma być włączony, czy wyłączony
+        Funkcja do ustawiania stanu przycisków do wybierania numeru produktu.
+        :param wlacz_wylacz: W zależności od jego wartości funkcja ustala, czy przycisk ma być włączony, czy wyłączony.
         """
         for przycisk in self.pinpad:
-            if wlacz_wylacz==True:
-                przycisk.config(state=NORMAL)#ustawiam stan przycisku na NORMAL-wlaczony
+            if wlacz_wylacz is True:
+                przycisk.config(state=NORMAL)  # ustawiam stan przycisku na NORMAL-wlaczony
             else:
-                przycisk.config(state=DISABLED)#ustawiam stan przycisku na DISABLED-wylaczony
+                przycisk.config(state=DISABLED)  # ustawiam stan przycisku na DISABLED-wylaczony
 
-    def na_informacje(self,info):
+    def na_informacje(self, info):
         """
-        funkcja do przypisania numeru do kodu
+        Funkcja do przypisania numeru do kodu.
         :param info: numer wybranego produktu
         """
-        kod=str(info)
-        self.wpis.delete(0,END) #czyszcze pole wpis
-        self.wpis.insert(0,kod) #wprowadzam tekst do pola wpis
-        self.okno.update() #przetwarzam okno
+        kod = str(info)
+        self.wpis.delete(0, END)  # czyszcze pole wpis
+        self.wpis.insert(0, kod)  # wprowadzam tekst do pola wpis
+        self.okno.update()  # przetwarzam okno
 
         time.sleep(1)
-        self.wpis.delete(0,END) #czyszcze pole wpis
-        self.przelacz_pinpad(True) #ustawiam stan przycisku na NORMAL-wlaczony
+        self.wpis.delete(0, END)  # czyszcze pole wpis
+        self.przelacz_pinpad(True)  # ustawiam stan przycisku na NORMAL-wlaczony
 
     def na_kod(self, kod):
         """
-        funkcja do wpisywania numeru produktu w polu po kliknieciu przycisków do wyboru produktów
-        :param kod: numer produktu
+        Funkcja do wpisywania numeru produktu w polu po kliknieciu przycisków do wyboru produktów.
+        :param kod: Numer produktu.
         """
         kod = str(kod)
         self.wpis.delete(0, END)  # czyszcze pole wpis
         self.wpis.insert(0, kod)  # wprowadzam tekst do pola
 
-    def wrzucanie_monet(self,kwota):
+    def wrzucanie_monet(self, kwota):
         """
-        funkcja do wyświetlania informacji o cenie produktu, który został wybrany
-        :param kwota: cena produktu
+        Funkcja do wyświetlania informacji o cenie produktu, który został wybrany.
+        :param kwota: Cena produktu.
         """
-        self.przelacz_pinpad(False) #ustawiam stan przycisku DISABLED-wylaczony
-        messagebox.showinfo("UWAGA", "Cena: " + str(kwota / 100) + "        WRZUC MONETY ") #tworze nowe okienko, by wyświetlić informacje
+        self.przelacz_pinpad(False)  # ustawiam stan przycisku DISABLED-wylaczony
+        messagebox.showinfo("UWAGA", "Cena: " + str(kwota / 100) + "        WRZUC MONETY ")  # tworze nowe okienko, by wyświetlić informacje
 
-    def zwrot_pieniedzy(self,monety):
+    def zwrot_pieniedzy(self, monety):
         """
-        funkcja do zwrotu pieniedzy gdy albo klikamy pzerwij, albo trzeba wydac reszte
-        wyskakuje informacja o tym ile reszty zwrociliśmy
-        :param monety: wartość monety
+        Funkcja do zwrotu pieniedzy.
+
+        Gdy albo klikamy pzerwij, albo trzeba wydac reszte wyskakuje informacja o tym ile reszty zwrociliśmy.
+        :param monety: Wartość monety.
         """
-        self.wrzucone=0 #zeruje wartość wrzuconych monet
-        for wartosc,ilosc in monety.items():
-            if ilosc>0:
-                if wartosc<100:
-                    grzl=str(wartosc)+"gr"
+        self.wrzucone = 0  # zeruje wartość wrzuconych monet
+        for wartosc, ilosc in monety.items():
+            if ilosc > 0:
+                if wartosc < 100:
+                    grzl = str(wartosc)+"gr"
                 else:
                     grzl = str(wartosc//100) + "zl"
-                self.wpis0.delete(0,END) #czyszcze pole wpis0
-                messagebox.showinfo("UWAGA", "WYDANO {} razy {}".format(ilosc,grzl)) #tworze nowe okienko, by wyświetlić informacje
-                self.okno.update() #przetwarzam okno
+                self.wpis0.delete(0, END)  # czyszcze pole wpis0
+                messagebox.showinfo("UWAGA", "WYDANO {} razy {}".format(ilosc, grzl))  # tworze nowe okienko, by wyświetlić informacje
+                self.okno.update()  # przetwarzam okno
                 time.sleep(1)
-        self.wpis0.delete(0,END) #czyszcze pole wpis0
+        self.wpis0.delete(0, END)  # czyszcze pole wpis0
 
-    def wydano_produkt(self,produkt):
+    def wydano_produkt(self, produkt):
         """
-        funkcja do wyswietlania informacji o tym, jaki produkt został kupiony
-        :param produkt: nazwa produktu
+        Funkcja do wyswietlania informacji o tym, jaki produkt został kupiony.
+        :param produkt: Nazwa produktu.
         :return:
         """
-        self.wrzucone=0 #zeruje wartość wrzuconych monet
-        messagebox.showinfo("UWAGA","WYDANO PRODUKT "+produkt) #tworze nowe okienko, by wyświetlić informacje
-        self.wpis.delete(0,END) #czyszcze pole wpis
-        self.przelacz_pinpad(True) #ustawiam stan przycisku na NORMAL-wlaczony
-        self.wpis.delete(0,END) #czyszcze pole wpis
+        self.wrzucone = 0  # zeruje wartość wrzuconych monet
+        messagebox.showinfo("UWAGA", "WYDANO PRODUKT "+produkt)  # tworze nowe okienko, by wyświetlić informacje
+        self.wpis.delete(0, END)  # czyszcze pole wpis
+        self.przelacz_pinpad(True)  # ustawiam stan przycisku na NORMAL-wlaczony
+        self.wpis.delete(0, END)  # czyszcze pole wpis
 
-    def przerwij(self,produkt):
+    def przerwij(self, produkt):
         """
-        funkcja do obsługi przycisku przerwij, by po jego kliknięciu automat oddawał wrzucone monety
+        Funkcja do obsługi przycisku przerwij, by po jego kliknięciu automat oddawał wrzucone monety.
         """
-        self.wrzucone=0
-        self.przelacz_monety(False) #ustawiam stan przycisku DISABLED-wylaczony
-        self.przelacz_pinpad(False) #ustawiam stan przycisku DISABLED-wylaczony
-        automat.przerwij() #wywoluje funkcje przerwij z klasy Automat_z_napojami
-        self.przelacz_pinpad(True) #ustawiam stan przycisku na NORMAL-wlaczony
-        self.przelacz_monety(True) #ustawiam stan przycisku na NORMAL-wlaczony
-        self.wpis.delete(0,END)#czyszcze pole wpis0
+        self.wrzucone = 0
+        self.przelacz_monety(False)  # ustawiam stan przycisku DISABLED-wylaczony
+        self.przelacz_pinpad(False)  # ustawiam stan przycisku DISABLED-wylaczony
+        automat.przerwij()  # wywoluje funkcje przerwij z klasy Automat_z_napojami
+        self.przelacz_pinpad(True)  # ustawiam stan przycisku na NORMAL-wlaczony
+        self.przelacz_monety(True)  # ustawiam stan przycisku na NORMAL-wlaczony
+        self.wpis.delete(0, END)  # czyszcze pole wpis0
 
     def nie_moze_wydac(self):
         """
-        funkcja do wyświetlenia informacji o tym, że automat nie może wydac reszty i trzeba wrzucić wyliczoną kwote
+        Funkcja do wyświetlenia informacji o tym, że automat nie może wydac reszty i trzeba wrzucić wyliczoną kwote.
         """
-        self.wrzucone=0 #zeruje wartość wrzuconych monet
-        messagebox.showinfo("UWAGA","TYLKO ODLICZONA KWOTA") #tworze nowe okienko, by wyświetlić informacje
-        self.wpis.delete(0,END) #czyszcze pole wpis
-        self.przelacz_pinpad(False) #ustawiam stan przycisku na DISABLED-wylaczony
-        self.wpis.delete(0,END) #czyszcze pole wpis
+        self.wrzucone = 0  # zeruje wartość wrzuconych monet
+        messagebox.showinfo("UWAGA", "TYLKO ODLICZONA KWOTA")  # tworze nowe okienko, by wyświetlić informacje
+        self.wpis.delete(0, END)  # czyszcze pole wpis
+        self.przelacz_pinpad(False)  # ustawiam stan przycisku na DISABLED-wylaczony
+        self.wpis.delete(0, END)  # czyszcze pole wpis
 
-    def nie_ma_w_automacie(self,produkt):
+    def nie_ma_w_automacie(self, produkt):
         """
-        funkcja do wyswietlania informacji o tym, ze nie ma w automacie wybranego produktu
+        Funkcja do wyswietlania informacji o tym, ze nie ma w automacie wybranego produktu.
         """
-        messagebox.showinfo("UWAGA","BRAK TOWARU W AUTOMACIE") #tworze nowe okienko, by wyświetlić informacje
-        self.wpis.delete(0,END) #czyszcze pole wpis
-        self.przelacz_pinpad(True) #ustawiam stan przycisku na NORMAL-wlaczony
-        self.wpis.delete(0,END) #czyszcze pole wpis
+        messagebox.showinfo("UWAGA", "BRAK TOWARU W AUTOMACIE")  # tworze nowe okienko, by wyświetlić informacje
+        self.wpis.delete(0, END)  # czyszcze pole wpis
+        self.przelacz_pinpad(True)  # ustawiam stan przycisku na NORMAL-wlaczony
+        self.wpis.delete(0, END)  # czyszcze pole wpis
 
-if __name__=="__main__":
-    interfejs=Interfejs_automatu()
+
+if __name__ == "__main__":
+    interfejs = InterfejsAutomatu()
     interfejs.interfejs()
-    automat.onBlad(interfejs.na_informacje)
-    automat.onZmianaKodu(interfejs.na_kod)
-    automat.onCzekajNaPieniadze(interfejs.wrzucanie_monet)
-    automat.onZwrocReszte(interfejs.zwrot_pieniedzy)
-    automat.onWydajProdukt(interfejs.wydano_produkt)
-    automat.onNiemaWAautomacie(interfejs.nie_ma_w_automacie)
-    automat.onTylkoOdliczonaKwota(interfejs.nie_moze_wydac)
+    automat.on_blad(interfejs.na_informacje)
+    automat.on_zmiana_kodu(interfejs.na_kod)
+    automat.on_czekaj_na_pieniadze(interfejs.wrzucanie_monet)
+    automat.on_zwroc_reszte(interfejs.zwrot_pieniedzy)
+    automat.on_wydaj_produkt(interfejs.wydano_produkt)
+    automat.on_nie_ma_w_automacie(interfejs.nie_ma_w_automacie)
+    automat.on_tylko_odliczona_kwota(interfejs.nie_moze_wydac)
     interfejs.run()

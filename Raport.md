@@ -16,7 +16,7 @@ zmniejsziwypisz. Przydatną klasą jest też WyborKodu, dzięki której możemy 
 
 ## Napotkane problemy
 Problemy przysporzyła mi realizacja testów, bowiem na początku mój program miał wyrzucać od razu pieniądze wrzucone do pojemnika na Monety, jeśli wcześniej nie było wybranego kodu.
-Jednak test nr 7 wymagał czegoś innego. Musiałam więc delikatnie zmienić zamysł i podzielić metode wrzucMonete na wrzucMonete i SprawdzIWydaj.
+Jednak test nr 7 wymagał czegoś innego. Musiałam więc delikatnie zmienić zamysł i podzielić metode wrzucMonete na wrzuc_monete i sprawdz_i_wydaj.
 Początkowo nie mogłam sobie też poradzić z komunikatem Tylko Odliczona Kwota, gdyż pojawiał się nawet, gdy reszta była wydawana. Jednak z tym też uporałam sie w miarę szybko.
 
 ## Główne założenia
@@ -30,29 +30,30 @@ to nie wszystko stracone, ponieważ istnieje przycisk przerwij, ktory pozwala na
 są czarno białe. Czarne tło i napisy w kolorze białym niedość, że nie męczą tak oczu, jak odwrotna postać kolorystyczna to cieszą oczy osobom kochającym czerń(mi na pewno).
 Testy, które powinny zostać przeprowadzone są udokumentowane w pliku system_Automatu na samym dole. W komentarzach mamy wyniki testów. 
 Więc nawet nie trzeba kompilować kodu, by sprawdzić, czy zadanie zostało zrealizowane. [Tutaj link, do szybszego sprawdzenia](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/bd7d65cca29d0ed8efa2ab0a9402c89cc1d21324/system_Automatu.py#L375-L463)
+Na koniec, by delikatnie poprawić cały kod użyłam pylint i naniosłam poprawki, które ten mi wskazał.
 
 ## Linki do wymaganych w projeckie konstrukcji
 ### a. Lambda-wyrażenia: 
-- [Użycie Eventu onZwrocReszte](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L369)
-- [Użycie Eventu onZmianaKodu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L370)
-- [Użycie Eventu onCzekajNaPieniadze](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L371)
-- [Użycie Eventu onWydajProdukt](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L372)
-- [Użycie Eventu onNiemaWAautomacie](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L373)
-- [Użycie Eventu onBlad](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L374)
-- [Obsługa przycisków do wrzucania monet](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/382b72a1c8460c53c2f4fb0ce94b7dc2048ec5cb/interface_Automatu.py#L82-L99)
-- [Obsługa przycisków do wyboru numeru produktu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/382b72a1c8460c53c2f4fb0ce94b7dc2048ec5cb/interface_Automatu.py#L120-L139)
+- [Użycie Eventu on_zwroc_reszte](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L371)
+- [Użycie Eventu on_zmiana_kodu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L372)
+- [Użycie Eventu on_czekaj_na_pieniadze](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L373)
+- [Użycie Eventu on_wydaj_produkt](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L374)
+- [Użycie Eventu on_nie_ma_w_automacie](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L375)
+- [Użycie Eventu on_blad](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L376)
+- [Obsługa przycisków do wrzucania monet](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/interface_Automatu.py#L90-L108)
+- [Obsługa przycisków do wyboru numeru produktu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/interface_Automatu.py#L129-L148)
 ### b1. Dictionary comprehensions:
-- [użycie do wyzerowania monet w schowku MonetyDoWydania w metodzie zwrocWartosc](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L42)
-- [użycie do wyzerowania monet w schowku w metodzie sprawdzIWydaj](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L297)
-- [użycie do wyzerowania monet w schowku w metodzie przerwij](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L310)
-- [użycie do tworzenia pustego schowka MonetyWSchowku](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L247)
+- [użycie do wyzerowania monet w schowku monety_do_wydania w metodzie zwroc_wartosc](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L45)
+- [użycie do wyzerowania monet w schowku w metodzie sprawdz_i_wydaj](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L300)
+- [użycie do wyzerowania monet w schowku w metodzie przerwij](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L313)
+- [użycie do tworzenia pustego schowka monety_w_schowku](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L249)
 ### b2.List comprehensions:
-- [użycie do dodania przycisków do wrzucania monet do zmiennej klasy przyciski_monety(lista)](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/interface_Automatu.py#L103)
-- [użycie do dodania przycisków do wyboru kodu do zmiennej klasy pinpad(lista)](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/interface_Automatu.py#L143)
+- [użycie do dodania przycisków do wrzucania monet do zmiennej klasy przyciski_monety(lista)](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/interface_Automatu.py#L113)
+- [użycie do dodania przycisków do wyboru kodu do zmiennej klasy pinpad(lista)](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/interface_Automatu.py#L152)
 ### c. Klasy
-- [Klasa realizująca funkcjonalność programu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/system_Automatu.py#L199)
-- [Klasa odpowiedzialna za interfejs użytkownika](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/interface_Automatu.py#L6)
+- [Klasa realizująca funkcjonalność programu](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/system_Automatu.py#L203)
+- [Klasa odpowiedzialna za interfejs użytkownika](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/interface_Automatu.py#L7)
 ### d. Moduły
-- [Import modułu system_Automatu do pliku interface_Automatu.py](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/3af016bf4ea84d80cf45e79e98e9ad2740e4448e/interface_Automatu.py#L1)
+- [Import modułu system_Automatu do pliku interface_Automatu.py](https://github.com/Sylwia-99/Automat-sprzedajacy-napoje/blob/e2a0ecbff34f20c9810da7c278e32e2775c758c9/interface_Automatu.py#L3)
  
 

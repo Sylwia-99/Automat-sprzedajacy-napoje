@@ -1,6 +1,6 @@
 from tkinter import Label, Tk, Entry, Button, messagebox, W, S, E, N, END, NORMAL, DISABLED
 import time
-import system_Automatu # importuje moduł system_Automatu
+import system_Automatu  # importuje moduł system_Automatu
 automat = system_Automatu.AutomatZnapojami()  # wywoluje konsturktor głownej klasy systemu_Automatu
 
 
